@@ -26,8 +26,9 @@ X_test = x_test.reshape(x_test.shape[0], x_test.shape[1]*x_test.shape[2])
 Y_train = (numpy.arange(10) == y_train[:, None]).astype(int)
 Y_test = (numpy.arange(10) == y_test[:,None]).astype(int)
 
-model.fit(X_train, Y_train, batch_size=200, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.3)
+model.fit(X_train, Y_train, batch_size=200, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.1)
 
-print 'test set'
+print '\ntest set'
 
-model.evaluate(X_test, Y_test, batch_size=200, verbose=1)
+loss, matrics = model.evaluate(X_test, Y_test, batch_size=200, verbose=1)
+print "- loss:", loss, "- acc:", matrics,
