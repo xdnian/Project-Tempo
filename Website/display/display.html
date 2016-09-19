@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+
+<img src="board.png" id="board" />
+
+<script type="text/javascript">
+//黑子是叉，白子是圈
+var currentplayer = "x";
+var gameboard = new Array();
+var xboard = new Array();
+var xmove = Number(0);
+var oboard = new Array();
+var omove = Number(0);
+for (var i=0;i<8;i++)
+{
+  gameboard[i] = new Array();
+  xboard[i] = new Array();
+  oboard[i] = new Array();
+  for (var j=0; j<8; j++)
+  {
+    gameboard[i][j] = "_";
+    xboard[i][j] = "_";
+    oboard[i][j] = "_";
+  }
+}
+gameboard[3][3] = "o";
+gameboard[3][4] = "x";
+gameboard[4][3] = "x";
+gameboard[4][4] = "o";
+
+xboard[3][2] = "x";
+xboard[2][3] = "x";
+xboard[4][5] = "x";
+xboard[5][4] = "x";
+
+oboard[4][2] = "o";
+oboard[2][4] = "o";
+oboard[3][5] = "o";
+oboard[5][3] = "o";
+
+function display()
+{
+  var up = 0;
+  var left = 0;
+  var board = document.getElementById("board");
+  board.style.cssText = "top:"+up+"px;position:absolute;left:"+left+"px;";
+
+  for (var i=0;i<8;i++)
+  {
+    for (var j=0; j<8; j++)
+    {
+      if (gameboard[i][j] == "x"){
+        var s = document.createElement("img");
+        s.id = "black"+i*8+j;
+        s.src = "black.png";
+        document.body.appendChild(s);
+
+
+        var black = document.getElementById("black"+i*8+j);
+        var xcoor = left+41+i*65;
+        var ycoor = up+41+j*65;
+        black.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
+      }
+      else if (gameboard[i][j] == "o"){
+        var s = document.createElement("img");
+        s.id = "white"+i*8+j;
+        s.src = "white.png";
+        document.body.appendChild(s);
+
+
+        var white = document.getElementById("white"+i*8+j);
+        var xcoor = left+41+i*65;
+        var ycoor = up+41+j*65;
+        white.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
+      }
+    }
+  }
+}
+
+function change_inside(target_x, target_y, end_x, end_y, current_piece, change)
+{
+  var i = Number(target_x);
+  var j = Number(target_y);
+  var listx = new Array(); var listy = new Array(); var num = Number(0);
+  var found = Boolean(false);
+
+  while (!found && (i != end_x || j != end_y))
+  {
+    if (end_x - i != 0)
+    {
+      i = i + (end_x - i)/Math.abs(end_x - i);
+    }
+    if (end_y - j != 0)
+    {
+      j = j + (end_y - j)/Math.abs(end_y - j);
+    }
+
+    if (gameboard[i][j] == "_")
+    {
+      return false;
+    }
+    else if (gameboard[i][j] == current_piece)
+    {
+      found = true;
+      break;
+    }
+
+    listx[num] = i;
+    listy[num] = j;
+    num++;
+  }
+
+  if (num == 0)
+  {
+    return false;
+  }
+  else if (change == true)
+  {
+    for (var n=0; n<num; n++)
+    {
+      gameboard[listx[n]][listy[n]] = current_piece;
+    }
+  }
+  return true;
+}
+
+function expand(target_x, target_y, current_piece, change)
+{
+  var enable = Boolean(false);
+  var up = Number(Math.min(target_x, target_y));
+  var down = Number(Math.min(7 - target_x, 7 - target_y));
+  var left = Number(Math.min(target_x, 7 - target_y));
+  var right = Number(Math.min(7 - target_x, target_y));
+
+  if (change_inside(target_x, target_y, 0, target_y, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, 7, target_y, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x, 0, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x, 7, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x-up, target_y-up, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x-left, target_y+left, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x+down, target_y+down, current_piece, change))
+    enable = true;
+  if (change_inside(target_x, target_y, target_x+right, target_y-right, current_piece, change))
+    enable = true;
+
+  if (enable == true)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+
+}
+
+function update(x, y)
+{
+  gameboard[x][y] = currentplayer;
+  //update the gameboard
+  expand(x, y, currentplayer, true)
+
+  //update the xboard, oboard, xmove and omove;
+  xmove = Number(0);
+  omove = Number(0);
+  for ( var i = 0; i<8; i++)
+  {
+    for (var j = 0; j<8; j++)
+    {
+      xboard[i][j] = "_";
+      oboard[i][j] = "_";
+      if (gameboard[i][j] == "_")
+      {
+        if (expand(i, j, "x", false))
+        {
+          xboard[i][j] = "x";
+          xmove++;
+        }
+        if (expand(i, j, "o", false))
+        {
+          oboard[i][j] = "o";
+          omove++;
+        }
+      }
+    }
+  }
+
+  if (currentplayer == "x")
+  {
+    if (omove != 0)
+    {
+      currentplayer = "o";
+    }
+  }
+  else if (currentplayer == "o")
+  {
+    if (xmove != 0)
+    {
+      currentplayer = "x";
+    }
+  }
+  display();
+}
+
+display();
+update(Number(3),Number(2));
+update(Number(2),Number(2));
+
+</script>
+
+</body>
+</html>

@@ -21,5 +21,5 @@ if __name__=='__main__':
         features = model.predict(x)
         pre = np.argmax(features)
         save_image = image.load_img("./photos/"+imgs[i])
-        save_image.save("./predict/"+lines[pre][10:]+".jpg")
+        save_image.save("./predict/"+lines[pre][10:-1]+”.jpg")
         
