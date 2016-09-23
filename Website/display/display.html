@@ -43,6 +43,45 @@ oboard[2][4] = "o";
 oboard[3][5] = "o";
 oboard[5][3] = "o";
 
+var oldboard = new Array();
+for (var i=0;i<8;i++)
+{
+  oldboard[i] = new Array();
+}
+
+function update_old()
+{
+  for (var i=0;i<8;i++){
+    for (var j=0; j<8; j++){
+      oldboard[i][j]=gameboard[i][j];
+    }
+  }
+}
+
+for (var i=0;i<8;i++){
+  for (var j=0; j<8; j++){
+    oldboard[i][j]="_";
+  }
+}  //新开一局时该for loop也需执行，在写main的时候考虑将该loop写成函数或与update_old合并
+
+function cleanboard()
+{
+  for (var i=0;i<8;i++)
+  {
+    for (var j=0; j<8; j++)
+    {
+      if (oldboard[i][j] == "x"){
+        var s = document.getElementById("black"+i*8+j);
+        s.parentNode.removeChild(s);
+      }
+      else if (oldboard[i][j] == "o"){
+        var s = document.getElementById("white"+i*8+j);
+        s.parentNode.removeChild(s);
+      }
+    }
+  }
+}
+
 function display()
 {
   var up = 0;
@@ -50,6 +89,11 @@ function display()
   var board = document.getElementById("board");
   board.style.cssText = "top:"+up+"px;position:absolute;left:"+left+"px;";
 
+  //Added 2016-9-20 starts
+  cleanboard();
+  update_old();
+  //Added 2016-9-20 ends
+  
   for (var i=0;i<8;i++)
   {
     for (var j=0; j<8; j++)
@@ -60,10 +104,9 @@ function display()
         s.src = "black.png";
         document.body.appendChild(s);
 
-
         var black = document.getElementById("black"+i*8+j);
-        var xcoor = left+41+i*65;
-        var ycoor = up+41+j*65;
+        var xcoor = left+41+j*65;
+        var ycoor = up+41+i*65;
         black.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
       }
       else if (gameboard[i][j] == "o"){
@@ -72,15 +115,16 @@ function display()
         s.src = "white.png";
         document.body.appendChild(s);
 
-
         var white = document.getElementById("white"+i*8+j);
-        var xcoor = left+41+i*65;
-        var ycoor = up+41+j*65;
+        var xcoor = left+41+j*65;
+        var ycoor = up+41+i*65;
         white.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
       }
     }
   }
 }
+
+
 
 function change_inside(target_x, target_y, end_x, end_y, current_piece, change)
 {
@@ -210,12 +254,25 @@ function update(x, y)
       currentplayer = "x";
     }
   }
-  display();
+  display(gameboard);
 }
 
-display();
+
 update(Number(3),Number(2));
 update(Number(2),Number(2));
+update(Number(2),Number(3));
+update(Number(4),Number(2));
+update(Number(5),Number(2));
+update(Number(6),Number(2));
+update(Number(5),Number(1));
+update(Number(5),Number(0));
+update(Number(7),Number(2));
+update(Number(5),Number(3));
+update(Number(6),Number(3));
+update(Number(5),Number(4));
+update(Number(7),Number(3));
+update(Number(7),Number(1));
+update(Number(7),Number(0));
 
 </script>
 
