@@ -2,46 +2,42 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <title></title>
 </head>
 <body>
 
-<img src="board.png" id="board" />
+<div style="width:602px;height:603px">
+<img src="board.png" id="board"/>
+</div>
 
 <script type="text/javascript">
+$(document).ready(function(){
+
 //黑子是叉，白子是圈
-var currentplayer = "x";
 var gameboard = new Array();
-var xboard = new Array();
-var xmove = Number(0);
-var oboard = new Array();
-var omove = Number(0);
+
+var pieces = new Array("x", "o");
+var currentplayer = pieces[0];
+var moves = new Array(Number(0), Number(0));
+var validboard = new Array(new Array(), new Array());
+
+var elementName = new Array("black", "white");
+var photoScource = new Array("black.png", "white.png", "black2.png", "white2.png");
+
 for (var i=0;i<8;i++)
 {
   gameboard[i] = new Array();
-  xboard[i] = new Array();
-  oboard[i] = new Array();
+  validboard[0][i] = new Array();
+  validboard[1][i] = new Array();
   for (var j=0; j<8; j++)
   {
     gameboard[i][j] = "_";
-    xboard[i][j] = "_";
-    oboard[i][j] = "_";
+    validboard[0][i][j] = "_";
+    validboard[1][i][j] = "_";
   }
 }
-gameboard[3][3] = "o";
-gameboard[3][4] = "x";
-gameboard[4][3] = "x";
-gameboard[4][4] = "o";
 
-xboard[3][2] = "x";
-xboard[2][3] = "x";
-xboard[4][5] = "x";
-xboard[5][4] = "x";
-
-oboard[4][2] = "o";
-oboard[2][4] = "o";
-oboard[3][5] = "o";
-oboard[5][3] = "o";
 
 var oldboard = new Array();
 for (var i=0;i<8;i++)
@@ -49,6 +45,30 @@ for (var i=0;i<8;i++)
   oldboard[i] = new Array();
 }
 
+/*
+  prepare the new board for the new game
+*/
+function prepareNewBoard()
+{
+  for (var i=0;i<8;i++){
+    for (var j=0; j<8; j++){
+      gameboard[i][j] = "_";
+    }
+  }
+
+  update_old();
+
+  gameboard[3][3] = pieces[1];
+  gameboard[3][4] = pieces[0];
+  gameboard[4][3] = pieces[0];
+  gameboard[4][4] = pieces[1];
+
+  validate();
+}
+
+/*
+  let the oldboard updated with the gameboard
+*/
 function update_old()
 {
   for (var i=0;i<8;i++){
@@ -58,30 +78,31 @@ function update_old()
   }
 }
 
-for (var i=0;i<8;i++){
-  for (var j=0; j<8; j++){
-    oldboard[i][j]="_";
-  }
-}  //新开一局时该for loop也需执行，在写main的时候考虑将该loop写成函数或与update_old合并
-
+/*
+  clean the old element
+*/
 function cleanboard()
 {
   for (var i=0;i<8;i++)
   {
     for (var j=0; j<8; j++)
     {
-      if (oldboard[i][j] == "x"){
-        var s = document.getElementById("black"+i*8+j);
-        s.parentNode.removeChild(s);
-      }
-      else if (oldboard[i][j] == "o"){
-        var s = document.getElementById("white"+i*8+j);
-        s.parentNode.removeChild(s);
+      for (var k=0; k<2; k++)
+      {
+        var s = document.getElementById(elementName[k]+i*8+j);
+        if (s!=null)
+        {
+          s.parentNode.removeChild(s);
+        }
       }
     }
   }
 }
 
+
+/*
+  display all the pieces and let the valid possible moves to be seen when hovered on
+*/
 function display()
 {
   var up = 0;
@@ -93,39 +114,67 @@ function display()
   cleanboard();
   update_old();
   //Added 2016-9-20 ends
-  
+
   for (var i=0;i<8;i++)
   {
     for (var j=0; j<8; j++)
     {
-      if (gameboard[i][j] == "x"){
-        var s = document.createElement("img");
-        s.id = "black"+i*8+j;
-        s.src = "black.png";
-        document.body.appendChild(s);
+      for (var k=0; k<2; k++)
+      {
+        if (gameboard[i][j] == pieces[k])
+        {
+          var xcoor = left+41+j*65;
+          var ycoor = up+41+i*65;
+          var container = document.createElement("div");
+          container.id = elementName[k]+i*8+j;
+          container.style.cssText = "width:65px;height:65px;top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
+          var img = document.createElement("img");
+          img.src = photoScource[k];
+          container.appendChild(img);
+          document.body.appendChild(container);
+        }
 
-        var black = document.getElementById("black"+i*8+j);
-        var xcoor = left+41+j*65;
-        var ycoor = up+41+i*65;
-        black.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
-      }
-      else if (gameboard[i][j] == "o"){
-        var s = document.createElement("img");
-        s.id = "white"+i*8+j;
-        s.src = "white.png";
-        document.body.appendChild(s);
-
-        var white = document.getElementById("white"+i*8+j);
-        var xcoor = left+41+j*65;
-        var ycoor = up+41+i*65;
-        white.style.cssText = "top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
+        // here we want to add the possible moves to be elements
+        if (validboard[k][i][j] == pieces[k])
+        {
+          var xcoor = left+41+j*65;
+          var ycoor = up+41+i*65;
+          var container = document.createElement("div");
+          container.id = elementName[k]+i*8+j;
+          container.style.cssText = "width:65px;height:65px;top:"+ycoor+"px;position:absolute;left:"+xcoor+"px;";
+          container.className = "hover"+k;
+          var img = document.createElement("img");
+          img.src = photoScource[k+2];
+          container.appendChild(img);
+          document.body.appendChild(container);
+        }
       }
     }
   }
 }
 
+function handleEvent()
+{
+  for (var k=0; k<2; k++)
+  {
+    $("div.hover"+k).children("img").hide();
+    if (currentplayer == pieces[k])
+    {
+      $("div.hover"+k).mouseenter(function(){
+          $(this).children("img").show();
+      });
+      $("div.hover"+k).mouseleave(function(){
+          $(this).children("img").hide();
+      });
+    }
+  }
+}
 
-
+/*
+  Change the pieces in certain directions between target point and end point.
+  The @current_piece is the current color the target point, or assumed color of it during idnetifying whether the point will a valid move.
+  The @change is a boolean. True if it is a actual move, false if it is an assumed move.
+*/
 function change_inside(target_x, target_y, end_x, end_y, current_piece, change)
 {
   var i = Number(target_x);
@@ -173,6 +222,11 @@ function change_inside(target_x, target_y, end_x, end_y, current_piece, change)
   return true;
 }
 
+/*
+  Expand from the target point in 8 directions.
+  The @current_piece is the current color the target point, or assumed color of it during idnetifying whether the point will a valid move.
+  The @change is a boolean. True if it is a actual move, false if it is an assumed move.
+*/
 function expand(target_x, target_y, current_piece, change)
 {
   var enable = Boolean(false);
@@ -209,6 +263,33 @@ function expand(target_x, target_y, current_piece, change)
 
 }
 
+/*
+  mark the valid possible moves on the xboard and oboard;
+*/
+function validate()
+{
+  moves[0] = Number(0);
+  moves[1] = Number(0);
+  for ( var i = 0; i<8; i++)
+  {
+    for (var j = 0; j<8; j++)
+    {
+      for (var k = 0; k<2 ;k++)
+      {
+        validboard[k][i][j] = "_";
+        if (gameboard[i][j] == "_")
+        {
+          if (expand(i, j, pieces[k], false))
+          {
+            validboard[k][i][j] = pieces[k];
+            moves[k]++;
+          }
+        }
+      }
+    }
+  }
+}
+
 function update(x, y)
 {
   gameboard[x][y] = currentplayer;
@@ -216,48 +297,29 @@ function update(x, y)
   expand(x, y, currentplayer, true)
 
   //update the xboard, oboard, xmove and omove;
-  xmove = Number(0);
-  omove = Number(0);
-  for ( var i = 0; i<8; i++)
+  validate();
+
+  if (currentplayer == pieces[0])
   {
-    for (var j = 0; j<8; j++)
+    if (moves[1] != 0)
     {
-      xboard[i][j] = "_";
-      oboard[i][j] = "_";
-      if (gameboard[i][j] == "_")
-      {
-        if (expand(i, j, "x", false))
-        {
-          xboard[i][j] = "x";
-          xmove++;
-        }
-        if (expand(i, j, "o", false))
-        {
-          oboard[i][j] = "o";
-          omove++;
-        }
-      }
+      currentplayer = pieces[1];
+    }
+  }
+  else if (currentplayer == pieces[1])
+  {
+    if (moves[0] != 0)
+    {
+      currentplayer = pieces[0];
     }
   }
 
-  if (currentplayer == "x")
-  {
-    if (omove != 0)
-    {
-      currentplayer = "o";
-    }
-  }
-  else if (currentplayer == "o")
-  {
-    if (xmove != 0)
-    {
-      currentplayer = "x";
-    }
-  }
-  display(gameboard);
+  display();
+  handleEvent();
 }
 
-
+prepareNewBoard();
+display();
 update(Number(3),Number(2));
 update(Number(2),Number(2));
 update(Number(2),Number(3));
@@ -274,6 +336,7 @@ update(Number(7),Number(3));
 update(Number(7),Number(1));
 update(Number(7),Number(0));
 
+});
 </script>
 
 </body>
