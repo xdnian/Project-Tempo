@@ -11,7 +11,7 @@ class othello_engine(object):
     def __init__(self, show = False, record = False):
         self.gameboard = []  # gameboard
         self.pieces = ['x', 'o'] #pieces color
-        self.currentplayer = self.pieces[0]
+        self.currentplayer = 0
         self.stones = [0, 0] #stone number for each player
         self.validmoves = [0, 0] # possible moves for each player
         self.validboard = [[], []] # the possible moves's board for each player
@@ -61,7 +61,7 @@ class othello_engine(object):
         self.count += 1;
         self.replay  = ""
         self.end = False
-        self.currentplayer = self.pieces[0]
+        self.currentplayer = 0
         if len(self.gameboard) == 0:
             for i in range(8):
                 self.gameboard.append(list("________"))
@@ -161,22 +161,18 @@ class othello_engine(object):
     def update(self, x, y):
         if (self.end == True):
             return
-        if (self.validboard[self.pieces.index(self.currentplayer)][x][y] != self.currentplayer):
+        if (self.validboard[self.currentplayer][x][y] != self.pieces[self.currentplayer]):
             self.display(force = True)
             print "Invalid move!:", x, y
             return
-        self.gameboard[x][y] = self.currentplayer
-        self.replay = self.replay + " " + str(self.pieces.index(self.currentplayer)) + str(x) + str(y)
+        self.gameboard[x][y] = pieces[self.currentplayer]
+        self.replay = self.replay + " " + str(self.currentplayer) + str(x) + str(y)
         #update the self.gameboard
-        self.expand(x, y, self.currentplayer, True)
+        self.expand(x, y, self.pieces[self.currentplayer], True)
         #update the self.validboard and self.validmoves
         self.validateAndCount()
-        if (self.currentplayer == self.pieces[0]):
-            if (self.validmoves[1] != 0):
-                self.currentplayer = self.pieces[1]
-        elif (self.currentplayer == self.pieces[1]):
-            if (self.validmoves[0] != 0):
-                self.currentplayer = self.pieces[0]
+        if (self.validmoves[1 - self.currentplayer] != 0):
+            self.currentplayer = 1 - self.currentplayer
         if(self.stones[0] == 0 or self.stones[1] == 0 or self.stones[0]+self.stones[1] == 64 or (self.validmoves[0]== 0 and self.validmoves[1] == 0)):
             self.end = True
             self.display()
@@ -209,7 +205,7 @@ if  __name__ == '__main__':
     engine = othello_engine(show = True)
     while (cmd == "y" or cmd == "Y"):
         while (not engine.finished()):
-            print "currentplayer is ", engine.currentplayer
+            print "currentplayer is ", engine.pieces[engine.currentplayer]
             cmd = raw_input("input x, y: ")
             if (len(cmd) > 2):
                 if (cmd[0].isdigit() and cmd[2].isdigit()):
