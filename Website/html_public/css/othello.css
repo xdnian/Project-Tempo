@@ -1,0 +1,46 @@
+/*
+ * Chess Board
+ * --------------------------------------------------
+ */
+
+#chessboard {
+ 	width: 600px;
+	height: 600px;
+	display: block;
+}
+
+#board {
+	position: absolute;
+	z-index: 0;
+}
+
+.chess {
+	width: 65px;
+	height: 65px;
+	position: absolute;
+	z-index: 1;
+}
+
+.chess.hover img {
+ 	display: none;
+ }
+
+ .panel{
+ 	height: 600px;
+ }
+
+.stone_img {
+ 	display: block;
+ 	width: 30px;
+ 	height: 30px;
+ 	margin-bottom: 10px
+ }
+
+.stone_cnt {
+	font-size: 20px;
+	margin: 10px 0 10px 0;
+}
+
+#restart {
+	margin: 10px;
+}
