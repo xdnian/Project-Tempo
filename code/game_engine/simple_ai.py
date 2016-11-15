@@ -154,7 +154,7 @@ if __name__ == '__main__':
             bot.set_player(1)
         while not bot.get_engine().finished():
             if bot.get_engine().get_currentplayer(number = True) != bot.get_player():
-                print "Your turn:", bot.get_engine().get_currentplayer()
+                print "Your turn:", bot.get_engine().get_currentplayer(number = False)
                 cmd = raw_input("input x, y: ")
                 if len(cmd) > 2:
                     if cmd[0].isdigit() and cmd[2].isdigit():

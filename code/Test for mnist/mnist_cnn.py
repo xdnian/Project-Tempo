@@ -9,7 +9,7 @@ from keras.utils import np_utils
 model = Sequential()
 model.add(Convolution2D(4, 5, 5, border_mode='valid', input_shape=(1, 28, 28)))
 model.add(Activation('tanh'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 
 model.add(Convolution2D(8, 3, 3, border_mode='valid'))
 model.add(Activation('tanh'))

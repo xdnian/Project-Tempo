@@ -11,7 +11,7 @@ class othello_engine(object):
     If you want to see the showing of gameboard, set show = True
     """
     def __init__(self, parent = None, show = False, record = False):
-        self.pieces = ['x', 'o', ' '] #pieces color
+        self.pieces = ['o', 'x', ' '] #pieces color
         self.show = show
         self.record = record
         if self.record:
@@ -21,7 +21,7 @@ class othello_engine(object):
                 f.close()
         if parent == None:
             self.gameboard = []  # gameboard
-            self.currentplayer = 0 # 0 is for black, 1 is for white
+            self.currentplayer = 1 # 1 is for black, 0 is for white
             self.stones = [0, 0] #stone number for each player
             self.validmoves = [0, 0] # possible moves for each player
             self.validboard = [[], []] # the possible moves's board for each player
@@ -69,7 +69,7 @@ class othello_engine(object):
             player = self.currentplayer
         return self.validmoves[player]
 
-    def get_currentplayer(self, number = False):
+    def get_currentplayer(self, number = True):
         if number:
             return self.currentplayer
         else:
@@ -97,19 +97,19 @@ class othello_engine(object):
     def finished(self):
         return self.end
 
-    def display(self, force = False, board = None):
-        if board == None:
-            board = self.validboard[self.currentplayer]
-        if force or self.show:
-            if system() == 'Windows':
-                sys("cls")
-            else:
-                sys("clear")
-            print "  0 1 2 3 4 5 6 7"
-            for i in xrange(8):
-                print str(i) + " " + ' '.join(self.pieces[j] for j in board[i])
-            print
-            raw_input()
+    # def display(self, force = False, board = None):
+    #     if board == None:
+    #         board = self.validboard[self.currentplayer]
+    #     if force or self.show:
+    #         if system() == 'Windows':
+    #             sys("cls")
+    #         else:
+    #             sys("clear")
+    #         for i in xrange(8):
+    #             print str(7-i) + " " + ' '.join(self.pieces[j] for j in board[7-i])
+    #         print "  0 1 2 3 4 5 6 7"
+    #         print
+    #         raw_input()
 
     def __display(self, force = False, board = None):
         if board == None:
@@ -119,9 +119,12 @@ class othello_engine(object):
                 sys("cls")
             else:
                 sys("clear")
-            print "  0 1 2 3 4 5 6 7"
             for i in xrange(8):
-                print str(i) + " " + ' '.join(self.pieces[j] for j in board[i])
+                print str(7-i),
+                for j in xrange(8):
+                    print self.pieces[board[j][7-i]],
+                print
+            print "  0 1 2 3 4 5 6 7"
             print
 
     def __record(self):
@@ -135,7 +138,7 @@ class othello_engine(object):
         self.count += 1;
         self.replay  = ""
         self.end = False
-        self.currentplayer = 0
+        self.currentplayer = 1
         if len(self.gameboard) == 0:
             for i in xrange(8):
                 self.gameboard.append([-1]*8)
@@ -248,11 +251,11 @@ class othello_engine(object):
 
     def update(self, x, y):
         if self.end == True:
-            return
+            return False
         if self.validboard[self.currentplayer][x][y] != self.currentplayer:
             self.__display(force = True)
             print "Invalid move!:", x, y
-            return
+            return False
         self.gameboard[x][y] = self.currentplayer
         self.replay = self.replay + " " + str(self.currentplayer) + str(x) + str(y)
         #update the self.gameboard
@@ -266,12 +269,12 @@ class othello_engine(object):
             self.end = True
             self.__record()
             self.__display()
-            if self.stones[0] > self.stones[1]:
-                self.winner = 0
+            if self.stones[1] > self.stones[0]:
+                self.winner = 1
                 self.replay = "Black" + self.replay
                 return "Black"
-            elif self.stones[0] < self.stones[1]:
-                self.winner = 1
+            elif self.stones[1] < self.stones[0]:
+                self.winner = 0
                 self.replay = "White" + self.replay
                 return "White"
             else:
@@ -279,6 +282,7 @@ class othello_engine(object):
                 self.replay = "Draw" + self.replay
                 return "Draw"
         self.__display()
+        return True
 
     def process_file(self, filename):
         fout = open(filename+"_replay", "w")
@@ -299,7 +303,7 @@ if  __name__ == '__main__':
     while cmd == "y" or cmd == "Y":
         engine.restart()
         while not engine.finished():
-            print "currentplayer is", engine.get_currentplayer()
+            print "currentplayer is", engine.get_currentplayer(number=False)
             cmd = raw_input("input x, y: ")
             if len(cmd) > 2:
                 if cmd[0].isdigit() and cmd[2].isdigit():
