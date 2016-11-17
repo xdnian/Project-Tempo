@@ -14,7 +14,7 @@ model.add(Convolution2D(4, 2, 2, activation='tanh', border_mode='valid', input_s
 model.add(Convolution2D(8, 2, 2, activation='tanh', border_mode='valid'))
 # model.add(MaxPooling2D(pool_size=(2, 2), border_mode='valid'))
 
-model.add(Convolution2D(16, 4, 4, activation='tanh', border_mode='valid'))
+model.add(Convolution2D(16, 2, 2, activation='tanh', border_mode='valid'))
 # model.add(MaxPooling2D(pool_size=(2, 2), border_mode='valid'))
 
 model.add(Flatten())
@@ -35,9 +35,11 @@ X_test = np.asarray(data[12000:-1,:,:,:])
 Y_train = np_utils.to_categorical(label[0:12000], 64)
 Y_test = np_utils.to_categorical(label[12000:-1], 64)
 
-model.fit(X_train, Y_train, batch_size=50, nb_epoch=50, shuffle=True, verbose=1, validation_split=0.1)
+model.fit(X_train, Y_train, batch_size=50, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
 
 print '\ntest set'
 
 loss, matrics = model.evaluate(X_test, Y_test, batch_size=25, verbose=1)
 print "- loss:", loss, "- acc:", matrics,
+
+model.save('CNN_model.h5')
