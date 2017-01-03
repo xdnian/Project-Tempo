@@ -42,83 +42,85 @@ import os
 import glob
 import time
 
-start_time = time.time()
+START_TIME = time.time()
 
-print 'File convertion begin...'
+print('File convertion begin...')
 # original file in \DATA
-data_dir = os.getcwd() + '\DATA\\'
+DATA_DIR = os.getcwd() + '\DATA\\'
 # converted data file in \DEST
-dest_dir = os.getcwd() + '\DEST\\'
+DEST_DIR = os.getcwd() + '\DEST\\'
 
-file_cnt = 0
+FILE_CNT = 0
 
-# For every txt file in the data_dir
-for filepath in glob.glob(data_dir+'*.txt'):
+# For every txt file in the DATA_DIR
+for filepath in glob.glob(DATA_DIR+'*.txt'):
 
-	# get file name without the path
-	_, filename = os.path.split(filepath)
-	# creat desination data fiel with dest_dir path
-	destfile = dest_dir + filename
+    # get file name without the path
+    _, filename = os.path.split(filepath)
+    # creat desination data fiel with DEST_DIR path
+    destfile = DEST_DIR + filename
 
-	try:
-		# open the file in data_dir for reading
-		file = open(filepath)
-		# open a same-name file in dest_dir for writing
-		output = open(destfile, 'w')
+    try:
+        # open the file in DATA_DIR for reading
+        file = open(filepath)
+        # open a same-name file in DEST_DIR for writing
+        output = open(destfile, 'w')
 
-		# initialize line counter
-		line_cnt = 0
-		# for each line in the file
-		for line in file.readlines():
-			line_cnt += 1
-			
-			# the record start at line 25
-			if line_cnt > 24:
-				# a space line after line 25 means the end of the record, break the loop
-				if line.isspace():
-					break
+        # initialize line counter
+        line_cnt = 0
+        # for each line in the file
+        for line in file.readlines():
+            line_cnt += 1
 
-				# read one turn of black
-				black_cnt, black_move = line[1:3], line[5:7]
+            # the record start at line 25
+            if line_cnt > 24:
+                # a space line after line 25 means the end of the record, break the loop
+                if line.isspace():
+                    break
 
-				# if the black move is not forced to be skiped
-				if black_move != '--':
-					# # print in commond line
-					# print '1 ' + str(ord(black_move[0]) - 97) + ' ' + str(8 - int(black_move[1]))
+                # read one turn of black
+                black_cnt, black_move = line[1:3], line[5:7]
 
-					# convert and write in destination file
-					output.write('1 ' + str(ord(black_move[0]) - 97) + ' ' + str(8 - int(black_move[1]))+'\n')
+                # if the black move is not forced to be skiped
+                if black_move != '--':
+                    # # print in commond line
+                    # print '1 ' + str(ord(black_move[0]) - 97) + ' ' + str(8 - int(black_move[1]))
 
-				# if the line have only the first half of the record, just skip this turn
-				# this usually means this is the last line of the record
-				if len(line) < 50:
-					continue
-				
-				# read one turn of white
-				white_cnt, white_move = line[38:40], line[42:44]
-				
-				# if the white move is not forced to be skiped
-				if white_move != '--':
-					# # print in commond line
-					# print '0 ' + str(ord(white_move[0]) - 97) + ' ' + str(8 - int(white_move[1]))
+                    # convert and write in destination file
+                    output.write('1 ' + str(ord(black_move[0]) - 97) + ' ' +
+                                 str(8 - int(black_move[1]))+'\n')
 
-					# convert and write in destination file
-					output.write('0 ' + str(ord(white_move[0]) - 97) + ' ' + str(8 - int(white_move[1]))+'\n')
+                # if the line have only the first half of the record, just skip this turn
+                # this usually means this is the last line of the record
+                if len(line) < 50:
+                    continue
 
-		# close the file after reading or writing
-		file.close()
-		output.close()
+                # read one turn of white
+                white_cnt, white_move = line[38:40], line[42:44]
 
-	except Exception, msg:
-		print "Error at \"" + filename +"\": "
-		print msg
-		print 'Continue...'
+                # if the white move is not forced to be skiped
+                if white_move != '--':
+                    # # print in commond line
+                    # print '0 ' + str(ord(white_move[0]) - 97) + ' ' + str(8 - int(white_move[1]))
 
-	else:
-		file_cnt += 1
+                    # convert and write in destination file
+                    output.write('0 ' + str(ord(white_move[0]) - 97) + ' ' +
+                                 str(8 - int(white_move[1]))+'\n')
+
+        # close the file after reading or writing
+        file.close()
+        output.close()
+
+    except Exception as msg:
+        print("Error at \"" + filename +"\": ")
+        print(msg)
+        print('Continue...')
+
+    else:
+        FILE_CNT += 1
 
 # finish
-print 'File convertion finished: '
-runningtime = round(time.time()-start_time, 3)
-print "\tTotal running time: " + str(runningtime) + " seconds."
-print "\t" + str(file_cnt) + " file(s) converted."
+print('File convertion finished: ')
+RUNNING_TIME = round(time.time()-START_TIME, 3)
+print("\tTotal running time: " + str(RUNNING_TIME) + " seconds.")
+print("\t" + str(FILE_CNT) + " file(s) converted.")
