@@ -5,11 +5,7 @@ from keras.models import Sequential
 
 class ai_bot(object):
     """
-    This AI bot use alpha beta search to do simple AI compute.
-    It heuristic function can be
-    1) a simple evalutation function by given points of certain pieces on corners and sides
-    2) a more complex evaluation function
-    3) a customed function passed in
+    This AI bot is a scretch for a simple AI based on the move prediction.
     """
     def __init__(self, show = False, record = False, player = 1):
         if player == 1 or player.lower() == "black":

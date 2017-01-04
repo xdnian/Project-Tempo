@@ -11,14 +11,12 @@ class ai_bot(object):
     3) a customed function passed in
     """
     def __init__(self, show = False, record = False, player = 1, heuristic = None, points = [10.5, 5.5], depth = 2, infinite = 1000):
-        if player == 1 or player.lower() == "white":
+        if player == 1 or player.lower() == "black":
             self.player = 1
         else:
             self.player = 0
         if heuristic == None:
             self.heuristic = self.simple_heuristic
-        elif heuristic == "complex":
-            self.heuristic = self.complex_heuristic
         else:
             self.heuristic = heuristic
         self.points = points
@@ -33,10 +31,13 @@ class ai_bot(object):
         return self.player
 
     def set_player(self, player):
-        if player == 1 or player.lower() == "white":
+        if player == 1 or player.lower() == "black":
             self.player = 1
         else:
             self.player = 0
+
+    def set_heuristic(self, heuristic):
+        self.heuristic = heuristic
 
     def run_best_move(self):
         self.game_engine.set_show(False)
@@ -55,7 +56,7 @@ class ai_bot(object):
         for x, y in moves:
             self.game_engine.update(x, y)
             flips = cp.deepcopy(self.game_engine.get_last_flips())
-            result = self.alpha_beta(1-self.player, self.depth + sum(self.game_engine.get_stones(return_all = True))/20, bestresult, self.infinite)
+            result = self.alpha_beta(1-self.player, self.depth, bestresult, self.infinite)
             self.game_engine.undo_move(x, y, flips)
             if result > bestresult:
                 bestresult = result
@@ -83,35 +84,6 @@ class ai_bot(object):
                 if validboard[x][y] == player:
                     moves.append((x,y))
         return moves
-
-    def simple_heuristic(self, engine, player):
-        board = engine.get_board()
-        value = 0
-        for x, y in [(0,0),(0,7),(7,0),(7,7)]:
-            if board[x][y] == player:
-                value += self.points[0]
-            else:
-                value -= self.points[0]
-        for x in [0,7]:
-            for y in range(8)[1:-1]:
-                if board[x][y] == player:
-                    value += self.points[1]
-                else:
-                    value -= self.points[1]
-                if board[y][x] == self.player:
-                    value += self.points[1]
-                else:
-                    value -= self.points[1]
-        for x in range(8)[1:-1]:
-            for y in range(8)[1:-1]:
-                if board[x][y] == player:
-                    value += 1
-                else:
-                    value -= 1
-        return value
-
-    def complex_heuristic(self):
-        return 0
 
     def alpha_beta(self, player, depth, alpha, beta):
         if depth == 0:
@@ -141,17 +113,43 @@ class ai_bot(object):
                 alpha = result
         return alpha
 
+    def simple_heuristic(self, engine, player):
+        board = engine.get_board()
+        value = 0
+        for x, y in [(0,0),(0,7),(7,0),(7,7)]:
+            if board[x][y] == player:
+                value += self.points[0]
+            else:
+                value -= self.points[0]
+        for x in [0,7]:
+            for y in range(8)[1:-1]:
+                if board[x][y] == player:
+                    value += self.points[1]
+                else:
+                    value -= self.points[1]
+                if board[y][x] == self.player:
+                    value += self.points[1]
+                else:
+                    value -= self.points[1]
+        for x in range(8)[1:-1]:
+            for y in range(8)[1:-1]:
+                if board[x][y] == player:
+                    value += 1
+                else:
+                    value -= 1
+        return value
+
 
 if __name__ == '__main__':
     cmd = raw_input("Start a new Game (y/n)? : ")
     bot = ai_bot(show = True)
     while cmd == "y" or cmd == "Y":
         bot.get_engine().restart()
-        cmd = raw_input("You want black(0)/white(1)? (default is black): ")
-        if cmd == "1" or cmd.lower() == "white":
-            bot.set_player(0)
-        else:
+        cmd = raw_input("You want black(1)/white(0)? (default is black): ")
+        if cmd == "1" or cmd.lower() == "black":
             bot.set_player(1)
+        else:
+            bot.set_player(0)
         while not bot.get_engine().finished():
             if bot.get_engine().get_currentplayer(number = True) != bot.get_player():
                 print "Your turn:", bot.get_engine().get_currentplayer(number = False)
@@ -163,9 +161,9 @@ if __name__ == '__main__':
                 (x,y) = bot.run_best_move()
                 print "The bot play on", x, y
 
-        if bot.get_engine().get_winner() == 0:
+        if bot.get_engine().get_winner() == 1:
             print "Winner is Black!"
-        elif bot.get_engine().get_winner() == 1:
+        elif bot.get_engine().get_winner() == 0:
             print "Winner is White!"
         else:
             print "Draw!"
