@@ -97,19 +97,21 @@ class othello_engine(object):
     def finished(self):
         return self.end
 
-    # def display(self, force = False, board = None):
-    #     if board == None:
-    #         board = self.validboard[self.currentplayer]
-    #     if force or self.show:
-    #         if system() == 'Windows':
-    #             sys("cls")
-    #         else:
-    #             sys("clear")
-    #         for i in xrange(8):
-    #             print str(7-i) + " " + ' '.join(self.pieces[j] for j in board[7-i])
-    #         print "  0 1 2 3 4 5 6 7"
-    #         print
-    #         raw_input()
+    def display(self, force = False, board = None):
+        if board == None:
+            board = self.gameboard
+        if force or self.show:
+            if system() == 'Windows':
+                sys("cls")
+            else:
+                sys("clear")
+            for i in xrange(8):
+                print str(7-i),
+                for j in xrange(8):
+                    print self.pieces[board[j][7-i]],
+                print
+            print "  0 1 2 3 4 5 6 7"
+            print
 
     def __display(self, force = False, board = None):
         if board == None:
@@ -308,9 +310,9 @@ if  __name__ == '__main__':
             if len(cmd) > 2:
                 if cmd[0].isdigit() and cmd[2].isdigit():
                     engine.update(ord(cmd[0]) - ord('0'), ord(cmd[2]) - ord('0'))
-        if engine.get_winner() == 0:
+        if engine.get_winner() == 1:
             print "Winner is Black!"
-        elif engine.get_winner() == 1:
+        elif engine.get_winner() == 0:
             print "Winner is White!"
         else:
             print "Draw!"

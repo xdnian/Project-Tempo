@@ -40,7 +40,7 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_absolute_percentage_error'])
 
 
-data, label = GE("./DEST_SCORE").get_generate_data()
+data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
 
 x_train = data[0:12000,:,:,:]
 x_test = data[12000:,:,:,:]
@@ -59,3 +59,5 @@ print '\ntest set'
 
 loss, matrics = model.evaluate(X_test, Y_test, batch_size=200, verbose=1)
 print "- loss:", loss, "- mean_absolute_percentage_error:", matrics,
+
+model.save('MLP_score_model.h5')
