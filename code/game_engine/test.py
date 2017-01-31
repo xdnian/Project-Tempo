@@ -1,6 +1,8 @@
 # from data_generator import generator as ge
 from score_data_generator import generator as ge
 
+
+
 # new_ge = ge("data.txt")
 # data, label = new_ge.get_generate_data()
 # print label
@@ -14,6 +16,6 @@ from score_data_generator import generator as ge
 #             print int(line[i*2])
 #         print float(line[6:])
 
-new_ge = ge("./DEST_SCORE")
+new_ge = ge("../../trainning_set/DEST_SCORE_OLD")
 data, label = new_ge.get_generate_data()
-print data[0],label[0]
+print data[0],data[1],data[2]

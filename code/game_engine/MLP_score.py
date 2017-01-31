@@ -5,7 +5,7 @@ from score_data_generator import generator as GE
 import numpy
 
 model = Sequential()
-model.add(Dense(500, input_dim=320, init='uniform'))
+model.add(Dense(500, input_dim=9*8*8, init='uniform'))
 model.add(Activation('tanh'))
 model.add(Dropout(0.5))
 
@@ -40,7 +40,7 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_absolute_percentage_error'])
 
 
-data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
+data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
 
 x_train = data[0:12000,:,:,:]
 x_test = data[12000:,:,:,:]
@@ -53,7 +53,7 @@ X_test = x_test.reshape(x_test.shape[0], x_test.shape[1]*x_test.shape[2]*x_test.
 Y_train = y_train
 Y_test = y_test
 
-model.fit(X_train, Y_train, batch_size=200, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.1)
+model.fit(X_train, Y_train, batch_size=200, nb_epoch=20, shuffle=True, verbose=1, validation_split=0.1)
 
 print '\ntest set'
 

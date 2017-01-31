@@ -7,6 +7,20 @@ class heuristic(object):
         print "Warning! This method is supposed to be overwritten!"
         return 0
 
+    def check_adjacent(self, i, j, board):
+        for n in [-1,1]:
+            if i+n < 8 and i+n > -1:
+                if board[i+n][j] == -1:
+                    return True
+            if j+n < 8 and j+n > -1:
+                if board[i][j+n] == -1:
+                    return True
+        return False
+
+class random_heuristic(heuristic):
+    def evaluate(self, engine, player):
+        return 0
+
 class simple_heuristic(heuristic):
     '''
     first value is the corner, the second is the side
@@ -41,6 +55,10 @@ class simple_heuristic(heuristic):
                     value += 1
                 elif board[x][y] == 1-player:
                     value -= 1
+        ###DEBUG
+        # print value
+        # raw_input()
+        ###DEBUG
         return value
 
 class CNN_heuristic(heuristic):
@@ -51,10 +69,10 @@ class CNN_heuristic(heuristic):
         self.model = load_model(model)
 
     def evaluate(self, engine, player):
-        data = np.empty((1,5,8,8), dtype="int8")
+        data = np.empty((1,9,8,8), dtype="int8")
         gameboard = engine.get_board()
         validboards = engine.get_validboard(return_all=True)
-        arr = np.empty((5,8,8), dtype="int8")
+        arr = np.empty((9,8,8), dtype="int8")
         for i in range(8):
             for j in range(8):
                 if gameboard[i][j] == 1-player:
@@ -77,9 +95,40 @@ class CNN_heuristic(heuristic):
                     arr[4][i][j] = 1
                 else:
                     arr[4][i][j] = 0
+                if gameboard[i][j] == -1:
+                    arr[5][i][j] = 0
+                    arr[6][i][j] = 0
+                    arr[7][i][j] = 0
+                    arr[8][i][j] = 0
+                elif self.check_adjacent(i, j, gameboard):
+                    if gameboard[i][j] == player:
+                        arr[5][i][j] = 1
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 0
+                    elif gameboard[i][j] == 1-player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 1
+                        arr[8][i][j] = 0
+                else:
+                    if gameboard[i][j] == player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 1
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 0
+                    elif gameboard[i][j] == 1-player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 1
         data[0,:,:,:] = arr
         value = self.model.predict(data, batch_size=1)
-        return value
+        # ##DEBUG
+        # print value
+        # raw_input()
+        # ##DEBUG
+        return -value
 
 class MLP_heuristic(heuristic):
     def __init__(self, model):
@@ -89,10 +138,10 @@ class MLP_heuristic(heuristic):
         self.model = load_model(model)
 
     def evaluate(self, engine, player):
-        data = np.empty((1,5,8,8), dtype="int8")
+        data = np.empty((1,9,8,8), dtype="int8")
         gameboard = engine.get_board()
         validboards = engine.get_validboard(return_all=True)
-        arr = np.empty((5,8,8), dtype="int8")
+        arr = np.empty((9,8,8), dtype="int8")
         for i in range(8):
             for j in range(8):
                 if gameboard[i][j] == 1-player:
@@ -115,7 +164,38 @@ class MLP_heuristic(heuristic):
                     arr[4][i][j] = 1
                 else:
                     arr[4][i][j] = 0
+                if gameboard[i][j] == -1:
+                    arr[5][i][j] = 0
+                    arr[6][i][j] = 0
+                    arr[7][i][j] = 0
+                    arr[8][i][j] = 0
+                elif self.check_adjacent(i, j, gameboard):
+                    if gameboard[i][j] == player:
+                        arr[5][i][j] = 1
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 0
+                    elif gameboard[i][j] == 1-player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 1
+                        arr[8][i][j] = 0
+                else:
+                    if gameboard[i][j] == player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 1
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 0
+                    elif gameboard[i][j] == 1-player:
+                        arr[5][i][j] = 0
+                        arr[6][i][j] = 0
+                        arr[7][i][j] = 0
+                        arr[8][i][j] = 1
         data[0,:,:,:] = arr
         data = data.reshape(data.shape[0], data.shape[1]*data.shape[2]*data.shape[3])
         value = self.model.predict(data, batch_size=1)
-        return value
+        ###DEBUG
+        # print value
+        # raw_input()
+        ###DEBUG
+        return -value

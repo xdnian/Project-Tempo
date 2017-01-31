@@ -4,6 +4,7 @@ import copy as cp
 from heuristic import simple_heuristic as SH
 from heuristic import CNN_heuristic as CNNH
 from heuristic import MLP_heuristic as MLPH
+from heuristic import random_heuristic as RANH
 
 class battle_bot(object):
     '''
@@ -30,7 +31,9 @@ class battle_bot(object):
     def run_best_move(self):
         self.game_engine.set_show(False)
         (x, y) = self.get_best_move()
+        ###DEBUG
         # self.game_engine.set_show(True)
+        ###DEBUG
         self.game_engine.update(x, y)
         return (x, y)
 
@@ -77,6 +80,10 @@ class battle_bot(object):
     def alpha_beta(self, player, depth, alpha, beta):
         currentplayer = self.game_engine.get_currentplayer()
         if depth == 0:
+            ###DEBUG
+            # self.game_engine.set_show(True)
+            # self.game_engine.display()
+            ###DEBUG
             return self.heuristic[player].evaluate(self.game_engine, currentplayer)
         if self.game_engine.finished():
             if self.game_engine.get_winner() == currentplayer:
@@ -129,6 +136,16 @@ class battle_bot(object):
         print "White wins:", sum_white, "/", iterations, ", winning rate =", sum_white*1.0/iterations
         print "Draw:", draw, "/", iterations, "draw rate =", draw*1.0/iterations
 
-model = MLPH(model = "MLP_score_model.h5")
-battle = battle_bot(depth=0, heuristic=[SH(), model])
-battle.loop(100,10)
+# model = MLPH(model = "MLP_score_model.h5")
+model = CNNH(model = "CNN_score_model.h5")
+# battle = battle_bot(depth=0, heuristic=[model, SH()])
+# battle = battle_bot(depth=0, heuristic=[SH(), model])
+battle = battle_bot(depth=0, heuristic=[RANH(), model])
+# battle = battle_bot(depth=1, heuristic=[SH(), RANH()])
+# battle = battle_bot(depth=0, heuristic=[model, RANH()])
+
+
+battle.loop(250,10)
+#
+# battle = battle_bot(depth=0, heuristic=[model, RANH()])
+# battle.loop(250,10)
