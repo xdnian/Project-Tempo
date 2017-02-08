@@ -23,8 +23,8 @@
 #
 #  ORIGINAL:{
 #  History: <move> [<eval> <analysis> <eval> <lookahead>]
-#    1: d3         d3              book   2: c5         c5              book 
-#    3: f6         f6              book   4: f5         f5              book 
+#    1: d3         d3              book   2: c5         c5              book
+#    3: f6         f6              book   4: f5         f5              book
 #
 #     A  B  C  D  E  F  G  H
 #  1 |55|40|38|51|35|52|53|47| 1
@@ -46,11 +46,11 @@ import linecache
 
 START_TIME = time.time()
 
-print('File convertion begin...')
+print 'File convertion begin...'
 # original file in \DATA
-DATA_DIR = os.getcwd() + '\DATA\\'
+DATA_DIR = os.getcwd() + '/DATA_OLD/'
 # converted data file in \DEST_SCORE
-DEST_DIR = os.getcwd() + '\DEST_SCORE\\'
+DEST_DIR = os.getcwd() + '/DEST_SCORE_OLD/'
 
 FILE_CNT = 0
 
@@ -85,7 +85,6 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
 
         linecache.clearcache()
 
-
         # initialize line counter
         line_cnt = 0
         # for each line in the file
@@ -112,7 +111,12 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
                     else:
                         black_score = float(black_score_s)
                 else:
-                    black_score = black_standard
+                    if line_cnt < 50:
+                        # black_score = 3
+                        black_score = black_standard
+
+                    else:
+                        black_score = black_standard
 
                 # if the black move is not forced to be skiped
                 if black_move != '--':
@@ -144,7 +148,11 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
                     else:
                         white_score = float(white_score_s)
                 else:
-                    white_score = white_standard
+                    if line_cnt < 50:
+                        # white_score = 3
+                        white_score = white_standard
+                    else:
+                        white_score = white_standard
 
 
                 # if the white move is not forced to be skiped
@@ -163,9 +171,9 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
         outputfile.close()
 
     except Exception as msg:
-        print("Error at \"" + filename +"\": ")
-        print(msg)
-        print('Continue...')
+        print "Error at \"" + filename +"\": "
+        print msg
+        print 'Continue...'
         inputfile.close()
         outputfile.close()
         os.unlink(outputfile.name)
@@ -174,7 +182,7 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
         FILE_CNT += 1
 
 # finish
-print('File convertion finished: ')
+print 'File convertion finished: '
 RUNNING_TIME = round(time.time() - START_TIME, 3)
-print("\tTotal running time: " + str(RUNNING_TIME) + " seconds.")
-print("\t" + str(FILE_CNT) + " file(s) converted.")
+print "\tTotal running time: " + str(RUNNING_TIME) + " seconds."
+print "\t" + str(FILE_CNT) + " file(s) converted."

@@ -5,6 +5,8 @@ from heuristic import simple_heuristic as SH
 from heuristic import CNN_heuristic as CNNH
 from heuristic import MLP_heuristic as MLPH
 from heuristic import random_heuristic as RANH
+from heuristic import MLP_CAT_heuristic as MLCH
+from heuristic import CNN_CAT_heuristic as CNCH
 
 class battle_bot(object):
     '''
@@ -137,15 +139,19 @@ class battle_bot(object):
         print "Draw:", draw, "/", iterations, "draw rate =", draw*1.0/iterations
 
 # model = MLPH(model = "MLP_score_model.h5")
-model = CNNH(model = "CNN_score_model.h5")
+# model = CNNH(model = "CNN_score_model.h5")
+# model = MLCH(model = "MLP_cat_model.h5")
+model = CNCH(model = "CNN_cat_model.h5")
 # battle = battle_bot(depth=0, heuristic=[model, SH()])
-# battle = battle_bot(depth=0, heuristic=[SH(), model])
-battle = battle_bot(depth=0, heuristic=[RANH(), model])
+battle = battle_bot(depth=0, heuristic=[SH(), model])
+# battle = battle_bot(depth=0, heuristic=[RANH(), model])
 # battle = battle_bot(depth=1, heuristic=[SH(), RANH()])
 # battle = battle_bot(depth=0, heuristic=[model, RANH()])
+# battle = battle_bot(depth=0, heuristic=[RANH(), RANH()])
 
 
-battle.loop(250,10)
+
+battle.loop(100,10)
 #
 # battle = battle_bot(depth=0, heuristic=[model, RANH()])
 # battle.loop(250,10)
