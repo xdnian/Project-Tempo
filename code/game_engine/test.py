@@ -47,3 +47,7 @@ for i in xrange(1911):
     if np.argmax(predict_label[i]) == np.argmax(Y_train[i]):
         accsum += 1
 print "the acc for testing set is:", accsum/1911.0
+
+#new_ge = ge("../../trainning_set/DEST_SCORE_OLD")
+#data, label = new_ge.get_generate_data()
+#print data[0],data[1],data[2]
