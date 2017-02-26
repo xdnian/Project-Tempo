@@ -10,8 +10,8 @@ def sim_convert(line):
     #         value = 1.5
     #     elif value < 0:
     #         value = -1.5
-    # value = 12 / (1 + math.exp(-value/6)) - 6
-    value = int(round(value/4))
+    value = 16 / (1 + math.exp(-value/4.5)) - 8
+    value = int(round(value))
     if value > 8:
         value = 8
     elif value < -8:
