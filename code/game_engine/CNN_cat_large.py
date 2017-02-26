@@ -46,7 +46,7 @@ Y_test = np_utils.to_categorical(label[250000:], 17)
 #     print Y_train[i]
 #     raw_input()
 
-model.fit(X_train, Y_train, batch_size=2000, nb_epoch=500, shuffle=True, verbose=1, validation_split=0.1)
+model.fit(X_train, Y_train, batch_size=2000, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.1)
 
 print '\ntest set'
 

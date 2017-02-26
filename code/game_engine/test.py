@@ -16,6 +16,8 @@ from score_data_generator import generator as ge
 #             print int(line[i*2])
 #         print float(line[6:])
 
-new_ge = ge("../../trainning_set/DEST_SCORE_OLD")
-data, label = new_ge.get_generate_data()
-print data[0],data[1],data[2]
+#new_ge = ge("../../trainning_set/DEST_SCORE_OLD")
+#data, label = new_ge.get_generate_data()
+#print data[0],data[1],data[2]
+for i in range(8):
+    print i
