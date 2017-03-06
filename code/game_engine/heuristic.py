@@ -342,7 +342,7 @@ class CNN_CAT_heuristic(heuristic):
         if value > 8:
             value = value - 17
         #DEBUG
-        print value
-        raw_input()
+        # print value
+        # raw_input()
         #DEBUG
-        return -value if player == 1 else value
+        return value if player == 1 else -value
