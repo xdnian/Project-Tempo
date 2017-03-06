@@ -112,7 +112,7 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
                         black_score = float(black_score_s)
                 else:
                     if line_cnt < 50:
-                        # black_score = 3
+                        # black_score = 100
                         black_score = black_standard
 
                     else:
@@ -149,7 +149,7 @@ for filepath in glob.glob(DATA_DIR+'*.txt'):
                         white_score = float(white_score_s)
                 else:
                     if line_cnt < 50:
-                        # white_score = 3
+                        # white_score = 100
                         white_score = white_standard
                     else:
                         white_score = white_standard
