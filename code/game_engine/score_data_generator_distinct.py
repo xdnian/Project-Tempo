@@ -3,6 +3,7 @@
 numerical training set generator
 """
 import os
+import sys
 import numpy as np
 from othello import othello_engine as oe
 
@@ -16,14 +17,15 @@ class generator(object):
         self.oe = oe()
 
     def get_generate_data(self):
-        print "start"
+        print("Generate data start...")
         files = os.listdir(self.dirname)
         length = 0
         for filename in files:
             length += sum(1 for line in open(self.dirname + "/" + filename, "r"))
         data = np.empty((length, 9, 8, 8), dtype="int8")
         label = np.empty((length), dtype="float32")
-        print length
+        print("Total sample count: " + str(length))
+        print("\nReading from " + self.dirname + ":")
         data_id = 0
         for filename in files:
             with open(self.dirname + "/" + filename, "r") as f:
@@ -91,22 +93,35 @@ class generator(object):
                                         arr[7][i][j] = 0
                                         arr[8][i][j] = 1
                         data[data_id, :, :, :] = arr
-                        label[data_id] = score
+                        label[data_id] = -score
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
                         return
+
+                    # progress report
+                    percentage = round((float(data_id)/(length-1))*100, 1)
+                    progress_bar = '#'*int(percentage/2)
+                    sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+                    sys.stdout.flush()
+
                     data_id += 1
 
+        print "\nDeduplicating:"
         distinct_data = []
         distinct_label = []
-        for i in range(len(data)):
+        for i in range(length):
             if data[i].tolist() not in distinct_data:
                 distinct_data.append(data[i].tolist())
                 distinct_label.append(label[i])
 
-        print "Over!"
-        print len(distinct_data)
+            percentage = round((float(i)/(length-1))*100, 1)
+            progress_bar = '#'*int(percentage/2)
+            sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+            sys.stdout.flush()
+
+        print("\nOver!")
+        print("Total sample count: " + str(len(distinct_data)))
         return np.array(distinct_data), np.array(distinct_label)
 
     def check_adjacent(self, i, j, board):

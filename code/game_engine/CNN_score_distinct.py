@@ -33,19 +33,19 @@ model.add(Activation('sigmoid'))
 sgd = SGD(lr=0.04, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_error'])
 
-data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
-# data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
+# USE small data set
+# data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
+# X_train = np.asarray(data[0:11000,:,:,:])
+# X_test = np.asarray(data[11000:12200,:,:,:])
+# Y_train = np.asarray(label[0:11000])
+# Y_test = np.asarray(label[11000:12200])
 
-
-X_train = np.asarray(data[0:12000,:,:,:])
-X_test = np.asarray(data[12000:,:,:,:])
-Y_train = np.asarray(label[0:12000])
-Y_test = np.asarray(label[12000:])
-
-# X_train = np.asarray(data[0:240000,:,:,:])
-# X_test = np.asarray(data[240000:,:,:,:])
-# Y_train = np.asarray(label[0:240000])
-# Y_test = np.asarray(label[240000:])
+# USE large data set
+data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
+X_train = np.asarray(data[0:200000,:,:,:])
+X_test = np.asarray(data[200000:,:,:,:])
+Y_train = np.asarray(label[0:200000])
+Y_test = np.asarray(label[200000:])
 
 
 model.fit(X_train, Y_train, batch_size=200, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
