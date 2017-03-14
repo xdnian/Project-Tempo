@@ -91,15 +91,23 @@ class generator(object):
                                         arr[7][i][j] = 0
                                         arr[8][i][j] = 1
                         data[data_id, :, :, :] = arr
-                        label[data_id] = -score
+                        label[data_id] = score
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
                         return
                     data_id += 1
 
+        distinct_data = []
+        distinct_label = []
+        for i in range(len(data)):
+            if data[i].tolist() not in distinct_data:
+                distinct_data.append(data[i].tolist())
+                distinct_label.append(label[i])
+
         print "Over!"
-        return data, label
+        print len(distinct_data)
+        return np.array(distinct_data), np.array(distinct_label)
 
     def check_adjacent(self, i, j, board):
         for n in [-1, 1]:
