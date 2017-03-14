@@ -1,13 +1,17 @@
-from othello import othello_engine as oe
-import numpy as np
+# -*- coding: utf-8 -*-
+"""
+catagorical training set generator
+"""
 import os
+import numpy as np
+from othello import othello_engine as oe
 
 class generator(object):
     """
     This class intend to generate the data for training from the existing file
     """
 
-    def __init__(self, dirname, omit_lines = 8):
+    def __init__(self, dirname, omit_lines=8):
         self.dirname = dirname
         self.oe = oe()
         self.omit_lines = omit_lines
@@ -20,8 +24,8 @@ class generator(object):
             # if sum(1 for line in open(self.dirname + "/" + filename, "r")) < self.omit_lines:
             #     print "ERROR\n",filename
             length += sum(1 for line in open(self.dirname + "/" + filename, "r")) - self.omit_lines
-        data = np.empty((length,11,8,8),dtype="int8")
-        label = np.empty((length),dtype="int8")
+        data = np.empty((length, 11, 8, 8), dtype="int8")
+        label = np.empty((length), dtype="int8")
         print length
         data_id = 0
         for filename in files:
@@ -42,7 +46,7 @@ class generator(object):
                             player = self.oe.get_currentplayer()
                             gameboard = self.oe.get_board()
                             validboards = self.oe.get_validboard(return_all=True)
-                            arr = np.empty((11,8,8), dtype="int8")
+                            arr = np.empty((11, 8, 8), dtype="int8")
                             for i in range(8):
                                 for j in range(8):
                                     arr[0][i][j] = 0
@@ -95,7 +99,7 @@ class generator(object):
                                             arr[7][i][j] = 0
                                             arr[8][i][j] = 100
 
-                            data[data_id,:,:,:] = arr
+                            data[data_id, :, :, :] = arr
                             label[data_id] = score if currentplayer == 1 else -score
                             data_id += 1
                     else:
@@ -107,7 +111,7 @@ class generator(object):
         return data, label
 
     def check_adjacent(self, i, j, board):
-        for n in [-1,1]:
+        for n in [-1, 1]:
             if i+n < 8 and i+n > -1:
                 if board[i+n][j] == -1:
                     return True

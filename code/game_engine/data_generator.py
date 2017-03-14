@@ -18,7 +18,7 @@ class generator(object):
         data_id = 0
         with open(self.filename, "r") as f:
             length = sum(len(line.split()) for line in f)
-            raw_data = np.empty((length,6,8,8),dtype="int8")
+            raw_data = np.empty((length, 6, 8, 8), dtype="int8")
         print length
         with open(self.filename, "r") as f:
             for line in f:
@@ -31,7 +31,7 @@ class generator(object):
                     if self.oe.get_currentplayer() == currentplayer:
                         gameboard = self.oe.get_board()
                         validboards = self.oe.get_validboard(return_all=True)
-                        arr = np.empty((6,8,8), dtype="int8")
+                        arr = np.empty((6, 8, 8), dtype="int8")
                         for i in range(8):
                             for j in range(8):
                                 if gameboard[i][j] == currentplayer:
@@ -58,7 +58,7 @@ class generator(object):
                                     arr[5][i][j] = 1
                                 else:
                                     arr[5][i][j] = 0
-                        raw_data[data_id,:,:,:] = arr
+                        raw_data[data_id, :, :, :] = arr
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
