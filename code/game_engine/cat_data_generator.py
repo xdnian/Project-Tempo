@@ -24,9 +24,9 @@ class generator(object):
             # if sum(1 for line in open(self.dirname + "/" + filename, "r")) < self.omit_lines:
             #     print "ERROR\n",filename
             length += sum(1 for line in open(self.dirname + "/" + filename, "r")) - self.omit_lines
-        data = np.empty((length, 11, 8, 8), dtype="int8")
-        label = np.empty((length), dtype="int8")
-        print length
+        data = np.empty((length*4, 11, 8, 8), dtype="int8")
+        label = np.empty((length*4), dtype="int8")
+        print length*4
         data_id = 0
         for filename in files:
             with open(self.dirname + "/" + filename, "r") as f:
@@ -51,24 +51,24 @@ class generator(object):
                                 for j in range(8):
                                     arr[0][i][j] = 0
                                     if i==0 or i==7 or j==0 or j==7:
-                                        arr[9][i][j] = 100
+                                        arr[9][i][j] = 1
                                     else:
                                         arr[9][i][j] = 0
-                                    arr[10][i][j] = 100
-                                    if gameboard[i][j] == 1:
-                                        arr[1][i][j] = 100
-                                        arr[2][i][j] = 100
-                                        arr[3][i][j] = 0
-                                    elif gameboard[i][j] == 0:
-                                        arr[1][i][j] = 100
+                                    arr[10][i][j] = 1
+                                    if gameboard[i][j] == player:
+                                        arr[1][i][j] = 1
                                         arr[2][i][j] = 0
-                                        arr[3][i][j] = 100
+                                        arr[3][i][j] = 0
+                                    elif gameboard[i][j] == 1-player:
+                                        arr[1][i][j] = 0
+                                        arr[2][i][j] = 1
+                                        arr[3][i][j] = 0
                                     else:
                                         arr[1][i][j] = 0
                                         arr[2][i][j] = 0
-                                        arr[3][i][j] = 0
+                                        arr[3][i][j] = 1
                                     if validboards[player][i][j] == player:
-                                        arr[4][i][j] = 100
+                                        arr[4][i][j] = 1
                                     else:
                                         arr[4][i][j] = 0
                                     if gameboard[i][j] == -1:
@@ -77,38 +77,78 @@ class generator(object):
                                         arr[7][i][j] = 0
                                         arr[8][i][j] = 0
                                     elif self.check_adjacent(i, j, gameboard):
-                                        if gameboard[i][j] == 1:
-                                            arr[5][i][j] = 100
+                                        if gameboard[i][j] == player:
+                                            arr[5][i][j] = 1
                                             arr[6][i][j] = 0
                                             arr[7][i][j] = 0
                                             arr[8][i][j] = 0
-                                        elif gameboard[i][j] == 0:
+                                        elif gameboard[i][j] == 1-player:
                                             arr[5][i][j] = 0
                                             arr[6][i][j] = 0
-                                            arr[7][i][j] = 100
+                                            arr[7][i][j] = 1
                                             arr[8][i][j] = 0
                                     else:
-                                        if gameboard[i][j] == 1:
+                                        if gameboard[i][j] == player:
                                             arr[5][i][j] = 0
-                                            arr[6][i][j] = 100
+                                            arr[6][i][j] = 1
                                             arr[7][i][j] = 0
                                             arr[8][i][j] = 0
-                                        elif gameboard[i][j] == 0:
+                                        elif gameboard[i][j] == 1-player:
                                             arr[5][i][j] = 0
                                             arr[6][i][j] = 0
                                             arr[7][i][j] = 0
-                                            arr[8][i][j] = 100
+                                            arr[8][i][j] = 1
 
                             data[data_id, :, :, :] = arr
-                            label[data_id] = score if currentplayer == 1 else -score
-                            data_id += 1
+                            data[data_id+1, :, :, :] = np.array(list(m.transpose() for m in arr))
+                            arr = np.array(list(m[::-1] for p in arr for m in p[::-1]))
+                            data[data_id+2, :, :, :] = arr
+                            data[data_id+3, :, :, :] = np.array(list(m.transpose() for m in arr))
+                            label[data_id:data_id+4] = [score]*4 #if currentplayer == 1 else -score
+
+                            # progress report
+                            percentage = round((float(data_id)/(length-1))*100, 1)
+                            progress_bar = '#'*int(percentage/2)
+                            sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+                            sys.stdout.flush()
+
+                            data_id += 4
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
                         return
 
-        print "Over!"
-        return data, label
+        #Map
+        print "\nDeduplicating:"
+        bin_board_dict = {}
+        for i in xrange(length):
+            key = int(
+                ''.join(list(str(i) for own_stone_list in data[i][1].tolist() for num in own_stone_list))
+                + ''.join(list(str(i) for oppo_stone_list in data[i][2].tolist() for num in oppo_stone_list))
+                )
+            if key not in bin_board_dict:
+                bin_board_dict[key] = []
+            bin_board_dict[key].append(i)
+
+        #Reduce
+        uni_length = len(bin_board_dict)
+        uni_data = np.empty((uni_length, 9, 8, 8), dtype="int8")
+        uni_label = np.empty(uni_length, dtype="int8")
+        uni_data_id = 0
+        for board in bin_board_dict:
+            uni_data[uni_data_id] = data[bin_board_dict[board][0]]
+            uni_label[uni_data_id] = sum(label[i] for i in bin_board_dict[board])/len(bin_board_dict[board])
+
+            percentage = round((float(uni_data_id)/(uni_length-1))*100, 2)
+            progress_bar = '#'*int(percentage/2)
+            sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+            sys.stdout.flush()
+
+            uni_data_id += 1
+
+        print("\nOver!")
+        print("Total sample count: " + str(len(uni_data)))
+        return uni_data, uni_label
 
     def check_adjacent(self, i, j, board):
         for n in [-1, 1]:
@@ -119,3 +159,12 @@ class generator(object):
                 if board[i][j+n] == -1:
                     return True
         return False
+
+
+if __name__ == '__main__':
+    ge = generator("../../trainning_set/DEST_CAT", 0)
+    data, label = ge.get_generate_data()
+    f = file("training.npy", "wb")
+    np.save(f, data)
+    np.save(f, label)
+    f.close()

@@ -2,3 +2,5 @@
 .DS_Store
 *.conf
 ftp-sync.json
+setting.json
+*.npy

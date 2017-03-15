@@ -25,7 +25,7 @@ class generator(object):
         data = np.empty((length, 9, 8, 8), dtype="int8")
         label = np.empty((length), dtype="float32")
         print("Total sample count: " + str(length))
-        print("\nReading from " + self.dirname + ":")
+        print("Reading from " + self.dirname + ":")
         data_id = 0
         for filename in files:
             with open(self.dirname + "/" + filename, "r") as f:
@@ -108,21 +108,34 @@ class generator(object):
                     data_id += 1
 
         print "\nDeduplicating:"
-        distinct_data = []
-        distinct_label = []
-        for i in range(length):
-            if data[i].tolist() not in distinct_data:
-                distinct_data.append(data[i].tolist())
-                distinct_label.append(label[i])
+        bin_board_dict = {}
+        for i in xrange(length):
+            key = int(
+                ''.join(list(str(num) for own_stone_list in data[i][1].tolist() for num in own_stone_list))
+                + ''.join(list(str(num) for oppo_stone_list in data[i][2].tolist() for num in oppo_stone_list)), 2
+                )
+            if key not in bin_board_dict:
+                bin_board_dict[key] = []
+            bin_board_dict[key].append(i)
 
-            percentage = round((float(i)/(length-1))*100, 1)
+        uni_length = len(bin_board_dict)
+        uni_data = np.empty((uni_length, 9, 8, 8), dtype="int8")
+        uni_label = np.empty(uni_length, dtype="float32")
+        uni_data_id = 0
+        for board in bin_board_dict:
+            uni_data[uni_data_id] = data[bin_board_dict[board][0]]
+            uni_label[uni_data_id] = sum(label[i] for i in bin_board_dict[board])/len(bin_board_dict[board])
+
+            percentage = round((float(uni_data_id)/(uni_length-1))*100, 1)
             progress_bar = '#'*int(percentage/2)
             sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
             sys.stdout.flush()
 
+            uni_data_id += 1
+
         print("\nOver!")
-        print("Total sample count: " + str(len(distinct_data)))
-        return np.array(distinct_data), np.array(distinct_label)
+        print("Total sample count: " + str(len(uni_data)))
+        return uni_data, uni_label
 
     def check_adjacent(self, i, j, board):
         for n in [-1, 1]:

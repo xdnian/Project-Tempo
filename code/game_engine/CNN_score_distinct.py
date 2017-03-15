@@ -6,6 +6,8 @@ from keras.optimizers import SGD
 from keras.utils import np_utils
 from score_data_generator_distinct import generator as GE
 import numpy as np
+import os
+import time
 
 model = Sequential()
 model.add(Convolution2D(16, 4, 4, activation='sigmoid', border_mode='valid', input_shape=(9, 8, 8)))
@@ -33,7 +35,7 @@ model.add(Activation('sigmoid'))
 sgd = SGD(lr=0.04, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_error'])
 
-# USE small data set
+# # Use small data set
 # data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
 # X_train = np.asarray(data[0:11000,:,:,:])
 # X_test = np.asarray(data[11000:12200,:,:,:])
@@ -42,13 +44,15 @@ model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_e
 
 # USE large data set
 data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
-X_train = np.asarray(data[0:200000,:,:,:])
-X_test = np.asarray(data[200000:,:,:,:])
-Y_train = np.asarray(label[0:200000])
-Y_test = np.asarray(label[200000:])
+X_train = np.asarray(data[0:180000,:,:,:])
+X_test = np.asarray(data[180000:190000,:,:,:])
+Y_train = np.asarray(label[0:180000])
+Y_test = np.asarray(label[180000:190000])
 
 
-model.fit(X_train, Y_train, batch_size=200, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
+hist = model.fit(X_train, Y_train, batch_size=200, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.1)
+with open(time.strftime("./result/CNN_score_%Y%m%d%H%M.txt"), "w") as f:
+    f.write(hist.history)
 
 print '\ntest set'
 
