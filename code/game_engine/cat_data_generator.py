@@ -3,6 +3,7 @@
 catagorical training set generator
 """
 import os
+import sys
 import numpy as np
 from othello import othello_engine as oe
 
@@ -24,9 +25,10 @@ class generator(object):
             # if sum(1 for line in open(self.dirname + "/" + filename, "r")) < self.omit_lines:
             #     print "ERROR\n",filename
             length += sum(1 for line in open(self.dirname + "/" + filename, "r")) - self.omit_lines
-        data = np.empty((length*4, 11, 8, 8), dtype="int8")
-        label = np.empty((length*4), dtype="int8")
-        print length*4
+        length*=4
+        data = np.empty((length, 11, 8, 8), dtype="int8")
+        label = np.empty((length), dtype="int8")
+        print length
         data_id = 0
         for filename in files:
             with open(self.dirname + "/" + filename, "r") as f:
@@ -101,7 +103,7 @@ class generator(object):
 
                             data[data_id, :, :, :] = arr
                             data[data_id+1, :, :, :] = np.array(list(m.transpose() for m in arr))
-                            arr = np.array(list(m[::-1] for p in arr for m in p[::-1]))
+                            arr = arr[:,::-1,::-1]
                             data[data_id+2, :, :, :] = arr
                             data[data_id+3, :, :, :] = np.array(list(m.transpose() for m in arr))
                             label[data_id:data_id+4] = [score]*4 #if currentplayer == 1 else -score
@@ -123,8 +125,8 @@ class generator(object):
         bin_board_dict = {}
         for i in xrange(length):
             key = int(
-                ''.join(list(str(i) for own_stone_list in data[i][1].tolist() for num in own_stone_list))
-                + ''.join(list(str(i) for oppo_stone_list in data[i][2].tolist() for num in oppo_stone_list))
+                ''.join(list(str(num) for own_stone_list in data[i][1].tolist() for num in own_stone_list))
+                + ''.join(list(str(num) for oppo_stone_list in data[i][2].tolist() for num in oppo_stone_list))
                 )
             if key not in bin_board_dict:
                 bin_board_dict[key] = []
@@ -132,14 +134,14 @@ class generator(object):
 
         #Reduce
         uni_length = len(bin_board_dict)
-        uni_data = np.empty((uni_length, 9, 8, 8), dtype="int8")
+        uni_data = np.empty((uni_length, 11, 8, 8), dtype="int8")
         uni_label = np.empty(uni_length, dtype="int8")
         uni_data_id = 0
         for board in bin_board_dict:
             uni_data[uni_data_id] = data[bin_board_dict[board][0]]
-            uni_label[uni_data_id] = sum(label[i] for i in bin_board_dict[board])/len(bin_board_dict[board])
+            uni_label[uni_data_id] = int(sum(label[i] for i in bin_board_dict[board])/len(bin_board_dict[board]))
 
-            percentage = round((float(uni_data_id)/(uni_length-1))*100, 2)
+            percentage = round((float(uni_data_id)/(uni_length-1))*100, 1)
             progress_bar = '#'*int(percentage/2)
             sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
             sys.stdout.flush()
