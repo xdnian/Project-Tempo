@@ -4,14 +4,16 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
 from keras.optimizers import SGD
 from keras.utils import np_utils
-from score_data_generator import generator as GE
+from score_data_generator_distinct import generator as GE
 import numpy as np
+import os
+import time
 
 model = Sequential()
-model.add(Convolution2D(16, 4, 4, activation='sigmoid', border_mode='valid', input_shape=(9, 8, 8)))
+model.add(Convolution2D(32, 4, 4, activation='sigmoid', border_mode='valid', input_shape=(9, 8, 8)))
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Convolution2D(16, 2, 2, activation='sigmoid', border_mode='valid'))
+model.add(Convolution2D(32, 2, 2, activation='sigmoid', border_mode='valid'))
 # model.add(MaxPooling2D(pool_size=(2, 2), border_mode='valid'))
 
 # model.add(Convolution2D(4, 2, 2, activation='tanh', border_mode='valid'))
@@ -33,19 +35,30 @@ model.add(Activation('sigmoid'))
 sgd = SGD(lr=0.04, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_error'])
 
-data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
+# # Use small data set
+# data, label = GE("../../trainning_set/DEST_SCORE_OLD").get_generate_data()
+# X_train = np.asarray(data[0:11000,:,:,:])
+# X_test = np.asarray(data[11000:12200,:,:,:])
+# Y_train = np.asarray(label[0:11000])
+# Y_test = np.asarray(label[11000:12200])
 
+# USE large data set
+f = file("CNN_score_large_training_set.npy", "rb")
+data = np.load(f)
+label = np.load(f)
+X_train = np.asarray(data[0:600000,:,:,:])
+X_test = np.asarray(data[600000:660000,:,:,:])
+Y_train = np.asarray(label[0:600000])
+Y_test = np.asarray(label[600000:660000])
 
-X_train = np.asarray(data[0:12000,:,:,:])
-X_test = np.asarray(data[12000:,:,:,:])
-Y_train = np.asarray(label[0:12000])
-Y_test = np.asarray(label[12000:])
+# train
+hist = model.fit(X_train, Y_train, batch_size=5000, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
 
-model.fit(X_train, Y_train, batch_size=200, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
-
-print '\ntest set'
-
+print '\n=Test set='
 loss, matrics = model.evaluate(X_test, Y_test, batch_size=25, verbose=1)
-print "- loss:", loss, "- mean_squared_error:", matrics,
+print "- loss:", loss, "- mean_squared_error:", matrics
+
+# with open(time.strftime("./result/CNN_score_%Y%m%d%H%M.txt"), "w") as f:
+#     f.write(str(hist.history))
 
 model.save('CNN_score_model.h5')
