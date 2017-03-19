@@ -22,6 +22,7 @@ class generator(object):
         length = 0
         for filename in files:
             length += sum(1 for line in open(self.dirname + "/" + filename, "r"))
+        length*=4
         data = np.empty((length, 9, 8, 8), dtype="int8")
         label = np.empty((length), dtype="float32")
         print("Total sample count: " + str(length))
@@ -92,20 +93,26 @@ class generator(object):
                                         arr[6][i][j] = 0
                                         arr[7][i][j] = 0
                                         arr[8][i][j] = 1
+                        
                         data[data_id, :, :, :] = arr
-                        label[data_id] = -score
+                        data[data_id+1, :, :, :] = np.array(list(m.transpose() for m in arr))
+                        arr = arr[:,::-1,::-1]
+                        data[data_id+2, :, :, :] = arr
+                        data[data_id+3, :, :, :] = np.array(list(m.transpose() for m in arr))
+                        label[data_id:data_id+4] = [-score]*4
+
+                        # progress report
+                        percentage = round((float(data_id)/(length-1))*100, 1)
+                        progress_bar = '#'*int(percentage/2)
+                        sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+                        sys.stdout.flush()
+
+                        data_id += 4
+
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
                         return
-
-                    # progress report
-                    percentage = round((float(data_id)/(length-1))*100, 1)
-                    progress_bar = '#'*int(percentage/2)
-                    sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
-                    sys.stdout.flush()
-
-                    data_id += 1
 
         print "\nDeduplicating:"
         bin_board_dict = {}
@@ -146,3 +153,11 @@ class generator(object):
                 if board[i][j+n] == -1:
                     return True
         return False
+
+if __name__ == '__main__':
+    ge = generator("../../trainning_set/DEST_SCORE")
+    data, label = ge.get_generate_data()
+    f = file("CNN_score_large_training_set.npy", "wb")
+    np.save(f, data)
+    np.save(f, label)
+    f.close()

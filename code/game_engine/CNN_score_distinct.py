@@ -10,10 +10,10 @@ import os
 import time
 
 model = Sequential()
-model.add(Convolution2D(16, 4, 4, activation='sigmoid', border_mode='valid', input_shape=(9, 8, 8)))
+model.add(Convolution2D(32, 4, 4, activation='sigmoid', border_mode='valid', input_shape=(9, 8, 8)))
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Convolution2D(16, 2, 2, activation='sigmoid', border_mode='valid'))
+model.add(Convolution2D(32, 2, 2, activation='sigmoid', border_mode='valid'))
 # model.add(MaxPooling2D(pool_size=(2, 2), border_mode='valid'))
 
 # model.add(Convolution2D(4, 2, 2, activation='tanh', border_mode='valid'))
@@ -43,20 +43,22 @@ model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['mean_squared_e
 # Y_test = np.asarray(label[11000:12200])
 
 # USE large data set
-data, label = GE("../../trainning_set/DEST_SCORE").get_generate_data()
-X_train = np.asarray(data[0:180000,:,:,:])
-X_test = np.asarray(data[180000:190000,:,:,:])
-Y_train = np.asarray(label[0:180000])
-Y_test = np.asarray(label[180000:190000])
+f = file("CNN_score_large_training_set.npy", "rb")
+data = np.load(f)
+label = np.load(f)
+X_train = np.asarray(data[0:600000,:,:,:])
+X_test = np.asarray(data[600000:660000,:,:,:])
+Y_train = np.asarray(label[0:600000])
+Y_test = np.asarray(label[600000:660000])
 
+# train
+hist = model.fit(X_train, Y_train, batch_size=5000, nb_epoch=10, shuffle=True, verbose=1, validation_split=0.1)
 
-hist = model.fit(X_train, Y_train, batch_size=200, nb_epoch=100, shuffle=True, verbose=1, validation_split=0.1)
-with open(time.strftime("./result/CNN_score_%Y%m%d%H%M.txt"), "w") as f:
-    f.write(hist.history)
-
-print '\ntest set'
-
+print '\n=Test set='
 loss, matrics = model.evaluate(X_test, Y_test, batch_size=25, verbose=1)
-print "- loss:", loss, "- mean_squared_error:", matrics,
+print "- loss:", loss, "- mean_squared_error:", matrics
+
+# with open(time.strftime("./result/CNN_score_%Y%m%d%H%M.txt"), "w") as f:
+#     f.write(str(hist.history))
 
 model.save('CNN_score_model.h5')
