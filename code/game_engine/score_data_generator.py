@@ -3,6 +3,7 @@
 numerical training set generator
 """
 import os
+import sys
 import numpy as np
 from othello import othello_engine as oe
 
@@ -16,14 +17,16 @@ class generator(object):
         self.oe = oe()
 
     def get_generate_data(self):
-        print "start"
+        print("Generate data start...")
         files = os.listdir(self.dirname)
         length = 0
         for filename in files:
             length += sum(1 for line in open(self.dirname + "/" + filename, "r"))
+        length*=4
         data = np.empty((length, 9, 8, 8), dtype="int8")
         label = np.empty((length), dtype="float32")
-        print length
+        print("Total sample count: " + str(length))
+        print("Reading from " + self.dirname + ":")
         data_id = 0
         for filename in files:
             with open(self.dirname + "/" + filename, "r") as f:
@@ -90,16 +93,56 @@ class generator(object):
                                         arr[6][i][j] = 0
                                         arr[7][i][j] = 0
                                         arr[8][i][j] = 1
+                        
                         data[data_id, :, :, :] = arr
-                        label[data_id] = -score
+                        data[data_id+1, :, :, :] = np.array(list(m.transpose() for m in arr))
+                        arr = arr[:,::-1,::-1]
+                        data[data_id+2, :, :, :] = arr
+                        data[data_id+3, :, :, :] = np.array(list(m.transpose() for m in arr))
+                        label[data_id:data_id+4] = [-score]*4
+
+                        # progress report
+                        percentage = round((float(data_id)/(length-1))*100, 1)
+                        progress_bar = '#'*int(percentage/2)
+                        sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+                        sys.stdout.flush()
+
+                        data_id += 4
+
                     else:
                         print currentplayer, self.oe.get_currentplayer()
                         print("Fatal error")
                         return
-                    data_id += 1
 
-        print "Over!"
-        return data, label
+        print "\nDeduplicating:"
+        bin_board_dict = {}
+        for i in xrange(length):
+            key = int(
+                ''.join(list(str(num) for own_stone_list in data[i][1].tolist() for num in own_stone_list))
+                + ''.join(list(str(num) for oppo_stone_list in data[i][2].tolist() for num in oppo_stone_list)), 2
+                )
+            if key not in bin_board_dict:
+                bin_board_dict[key] = []
+            bin_board_dict[key].append(i)
+
+        uni_length = len(bin_board_dict)
+        uni_data = np.empty((uni_length, 9, 8, 8), dtype="int8")
+        uni_label = np.empty(uni_length, dtype="float32")
+        uni_data_id = 0
+        for board in bin_board_dict:
+            uni_data[uni_data_id] = data[bin_board_dict[board][0]]
+            uni_label[uni_data_id] = sum(label[i] for i in bin_board_dict[board])/len(bin_board_dict[board])
+
+            percentage = round((float(uni_data_id)/(uni_length-1))*100, 1)
+            progress_bar = '#'*int(percentage/2)
+            sys.stdout.write(' ' + str(percentage) + '%  ||' + progress_bar +'->'+"\r")
+            sys.stdout.flush()
+
+            uni_data_id += 1
+
+        print("\nOver!")
+        print("Total sample count: " + str(len(uni_data)))
+        return uni_data, uni_label
 
     def check_adjacent(self, i, j, board):
         for n in [-1, 1]:
@@ -110,3 +153,11 @@ class generator(object):
                 if board[i][j+n] == -1:
                     return True
         return False
+
+if __name__ == '__main__':
+    ge = generator("../../trainning_set/DEST_SCORE")
+    data, label = ge.get_generate_data()
+    f = file("CNN_score_large_training_set.npy", "wb")
+    np.save(f, data)
+    np.save(f, label)
+    f.close()
