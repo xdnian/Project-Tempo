@@ -1,0 +1,121 @@
+Black: CNN_CAT v.s. White: Weighted Square Strategy
+Black wins: 52 / 100 , winning rate = 0.52
+White wins: 46 / 100 , winning rate = 0.46
+Draw: 2 / 100 draw rate = 0.02
+Time: 48.913 Average match Time: 0.48913
+
+Black: Weighted Square Strategy v.s. White: CNN_CAT
+Black wins: 49 / 100 , winning rate = 0.49
+White wins: 48 / 100 , winning rate = 0.48
+Draw: 3 / 100 draw rate = 0.03
+Time: 46.186 Average match Time: 0.46186
+
+Black: CNN_CAT v.s. White: Random
+Black wins: 75 / 100 , winning rate = 0.75
+White wins: 19 / 100 , winning rate = 0.19
+Draw: 6 / 100 draw rate = 0.06
+Time: 63.43 Average match Time: 0.6343
+
+Black: Random v.s. White: CNN_CAT
+Black wins: 19 / 100 , winning rate = 0.19
+White wins: 77 / 100 , winning rate = 0.77
+Draw: 4 / 100 draw rate = 0.04
+Time: 63.549 Average match Time: 0.63549
+
+Black: CNN_CAT v.s. White: Weighted Square Strategy
+Black wins: 60 / 100 , winning rate = 0.6
+White wins: 39 / 100 , winning rate = 0.39
+Draw: 1 / 100 draw rate = 0.01
+Time: 365.541 Average match Time: 3.65541
+
+Black: Weighted Square Strategy v.s. White: CNN_CAT
+Black wins: 52 / 100 , winning rate = 0.52
+White wins: 44 / 100 , winning rate = 0.44
+Draw: 4 / 100 draw rate = 0.04
+Time: 341.144 Average match Time: 3.41144
+
+Black: CNN_CAT v.s. White: Random
+Black wins: 84 / 100 , winning rate = 0.84
+White wins: 13 / 100 , winning rate = 0.13
+Draw: 3 / 100 draw rate = 0.03
+Time: 472.462 Average match Time: 4.72462
+
+Black: Random v.s. White: CNN_CAT
+Black wins: 14 / 100 , winning rate = 0.14
+White wins: 84 / 100 , winning rate = 0.84
+Draw: 2 / 100 draw rate = 0.02
+Time: 450.772 Average match Time: 4.50772
+
+Black: CNN_CAT v.s. White: Weighted Square Strategy
+Black wins: 42 / 100 , winning rate = 0.42
+White wins: 50 / 100 , winning rate = 0.5
+Draw: 8 / 100 draw rate = 0.08
+Time: 736.565 Average match Time: 7.36565
+
+Black: Weighted Square Strategy v.s. White: CNN_CAT
+Black wins: 51 / 100 , winning rate = 0.51
+White wins: 41 / 100 , winning rate = 0.41
+Draw: 8 / 100 draw rate = 0.08
+Time: 675.837 Average match Time: 6.75837
+
+Black: CNN_CAT v.s. White: Random
+Black wins: 79 / 100 , winning rate = 0.79
+White wins: 19 / 100 , winning rate = 0.19
+Draw: 2 / 100 draw rate = 0.02
+Time: 882.817 Average match Time: 8.82817
+
+Black: Random v.s. White: CNN_CAT
+Black wins: 14 / 100 , winning rate = 0.14
+White wins: 82 / 100 , winning rate = 0.82
+Draw: 4 / 100 draw rate = 0.04
+Time: 833.632 Average match Time: 8.33632
+
+Black: CNN_CAT v.s. White: Weighted Square Strategy
+Black wins: 45 / 100 , winning rate = 0.45
+White wins: 46 / 100 , winning rate = 0.46
+Draw: 9 / 100 draw rate = 0.09
+Time: 5029.99 Average match Time: 50.2999
+
+Black: Weighted Square Strategy v.s. White: CNN_CAT
+Black wins: 42 / 100 , winning rate = 0.42
+White wins: 51 / 100 , winning rate = 0.51
+Draw: 7 / 100 draw rate = 0.07
+Time: 4916.448 Average match Time: 49.16448
+
+Black: CNN_CAT v.s. White: Random
+Black wins: 89 / 100 , winning rate = 0.89
+White wins: 6 / 100 , winning rate = 0.06
+Draw: 5 / 100 draw rate = 0.05
+Time: 6064.561 Average match Time: 60.64561
+
+Black: Random v.s. White: CNN_CAT
+Black wins: 6 / 100 , winning rate = 0.06
+White wins: 92 / 100 , winning rate = 0.92
+Draw: 2 / 100 draw rate = 0.02
+Time: 5746.529 Average match Time: 57.46529
+
+Black: CNN_CAT v.s. White: Weighted Square Strategy
+Black wins: 35 / 100 , winning rate = 0.35
+White wins: 60 / 100 , winning rate = 0.6
+Draw: 5 / 100 draw rate = 0.05
+Time: 9691.23 Average match Time: 96.9123
+
+Black: Weighted Square Strategy v.s. White: CNN_CAT
+Black wins: 41 / 100 , winning rate = 0.41
+White wins: 41 / 100 , winning rate = 0.41
+Draw: 18 / 100 draw rate = 0.18
+Time: 8074.541 Average match Time: 80.74541
+
+Black: CNN_CAT v.s. White: Random
+Black wins: 88 / 100 , winning rate = 0.88
+White wins: 5 / 100 , winning rate = 0.05
+Draw: 7 / 100 draw rate = 0.07
+Time: 11902.433 Average match Time: 119.02433
+
+Black: Random v.s. White: CNN_CAT
+Black wins: 10 / 100 , winning rate = 0.1
+White wins: 85 / 100 , winning rate = 0.85
+Draw: 5 / 100 draw rate = 0.05
+Time: 11607.54 Average match Time: 116.0754
+
+Black: CNN_CAT v.s. White: Weighte

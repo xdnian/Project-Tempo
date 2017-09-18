@@ -12,6 +12,43 @@
 #board {
 	position: absolute;
 	z-index: 0;
+ 	width: 600px;
+	height: 600px;
+	display: block;
+}
+
+@media (max-width: 768px) {
+	#chessboard {
+		width: 100vw;
+		height: 100vw;
+		display: block;
+	}
+
+	#board {
+		width: 100vw;
+		height: 100vw;
+		display: block;
+	}
+
+	.col-xs-12 {
+		padding: 0
+	}
+	.col-md-8 {
+		padding: 0
+	}
+	.main {
+		padding: 0
+	}
+
+	.chess {
+		width: 10.833vw;
+		height: 10.833vw;
+	}
+
+	.chess img{
+		width: 10.833vw;
+		height: 10.833vw;
+	}
 }
 
 .chess {

@@ -1,0 +1,722 @@
+Black: fast+policy+use_policy+use_depth v.s. White: WSS
+Black wins: 5 / 10 , winning rate = 0.5
+White wins: 4 / 10 , winning rate = 0.4
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 12 / 20 , winning rate = 0.6
+White wins: 7 / 20 , winning rate = 0.35
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 11 / 30 , winning rate = 0.366666666667
+Draw: 1 / 30 draw rate = 0.0333333333333
+Black wins: 21 / 40 , winning rate = 0.525
+White wins: 18 / 40 , winning rate = 0.45
+Draw: 1 / 40 draw rate = 0.025
+Black wins: 25 / 50 , winning rate = 0.5
+White wins: 24 / 50 , winning rate = 0.48
+Draw: 1 / 50 draw rate = 0.02
+Time: 5987.058 Average match Time: 119.74116
+
+Black: WSS v.s. White: fast+policy+use_policy+use_depth
+Black wins: 8 / 10 , winning rate = 0.8
+White wins: 2 / 10 , winning rate = 0.2
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 14 / 20 , winning rate = 0.7
+White wins: 5 / 20 , winning rate = 0.25
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 9 / 30 , winning rate = 0.3
+Draw: 3 / 30 draw rate = 0.1
+Black wins: 23 / 40 , winning rate = 0.575
+White wins: 13 / 40 , winning rate = 0.325
+Draw: 4 / 40 draw rate = 0.1
+Black wins: 25 / 50 , winning rate = 0.5
+White wins: 20 / 50 , winning rate = 0.4
+Draw: 5 / 50 draw rate = 0.1
+Time: 5654.963 Average match Time: 113.09926
+
+Black: fast+policy+use_policy+no_depth v.s. White: WSS
+Black wins: 3 / 10 , winning rate = 0.3
+White wins: 5 / 10 , winning rate = 0.5
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 6 / 20 , winning rate = 0.3
+White wins: 12 / 20 , winning rate = 0.6
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 11 / 30 , winning rate = 0.366666666667
+White wins: 17 / 30 , winning rate = 0.566666666667
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 16 / 40 , winning rate = 0.4
+White wins: 22 / 40 , winning rate = 0.55
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 19 / 50 , winning rate = 0.38
+White wins: 28 / 50 , winning rate = 0.56
+Draw: 3 / 50 draw rate = 0.06
+Time: 6013.034 Average match Time: 120.26068
+
+Black: WSS v.s. White: fast+policy+use_policy+no_depth
+Black wins: 4 / 10 , winning rate = 0.4
+White wins: 6 / 10 , winning rate = 0.6
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 9 / 20 , winning rate = 0.45
+White wins: 10 / 20 , winning rate = 0.5
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 12 / 30 , winning rate = 0.4
+White wins: 15 / 30 , winning rate = 0.5
+Draw: 3 / 30 draw rate = 0.1
+Black wins: 16 / 40 , winning rate = 0.4
+White wins: 21 / 40 , winning rate = 0.525
+Draw: 3 / 40 draw rate = 0.075
+Black wins: 22 / 50 , winning rate = 0.44
+White wins: 24 / 50 , winning rate = 0.48
+Draw: 4 / 50 draw rate = 0.08
+Time: 5605.934 Average match Time: 112.11868
+
+Black: fast+policy+use_random+use_depth v.s. White: WSS
+Black wins: 2 / 10 , winning rate = 0.2
+White wins: 8 / 10 , winning rate = 0.8
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 7 / 20 , winning rate = 0.35
+White wins: 13 / 20 , winning rate = 0.65
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 12 / 30 , winning rate = 0.4
+White wins: 18 / 30 , winning rate = 0.6
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 18 / 40 , winning rate = 0.45
+White wins: 21 / 40 , winning rate = 0.525
+Draw: 1 / 40 draw rate = 0.025
+Black wins: 21 / 50 , winning rate = 0.42
+White wins: 27 / 50 , winning rate = 0.54
+Draw: 2 / 50 draw rate = 0.04
+Time: 6029.101 Average match Time: 120.58202
+
+Black: WSS v.s. White: fast+policy+use_random+use_depth
+Black wins: 9 / 10 , winning rate = 0.9
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 14 / 20 , winning rate = 0.7
+White wins: 5 / 20 , winning rate = 0.25
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 9 / 30 , winning rate = 0.3
+Draw: 3 / 30 draw rate = 0.1
+Black wins: 21 / 40 , winning rate = 0.525
+White wins: 16 / 40 , winning rate = 0.4
+Draw: 3 / 40 draw rate = 0.075
+Black wins: 26 / 50 , winning rate = 0.52
+White wins: 19 / 50 , winning rate = 0.38
+Draw: 5 / 50 draw rate = 0.1
+Time: 5634.367 Average match Time: 112.68734
+
+Black: fast+policy+use_random+no_depth v.s. White: WSS
+Black wins: 6 / 10 , winning rate = 0.6
+White wins: 4 / 10 , winning rate = 0.4
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 9 / 20 , winning rate = 0.45
+White wins: 11 / 20 , winning rate = 0.55
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 13 / 30 , winning rate = 0.433333333333
+White wins: 17 / 30 , winning rate = 0.566666666667
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 17 / 40 , winning rate = 0.425
+White wins: 21 / 40 , winning rate = 0.525
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 22 / 50 , winning rate = 0.44
+White wins: 26 / 50 , winning rate = 0.52
+Draw: 2 / 50 draw rate = 0.04
+Time: 6072.785 Average match Time: 121.4557
+
+Black: WSS v.s. White: fast+policy+use_random+no_depth
+Black wins: 8 / 10 , winning rate = 0.8
+White wins: 2 / 10 , winning rate = 0.2
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 14 / 20 , winning rate = 0.7
+White wins: 4 / 20 , winning rate = 0.2
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 8 / 30 , winning rate = 0.266666666667
+Draw: 4 / 30 draw rate = 0.133333333333
+Black wins: 20 / 40 , winning rate = 0.5
+White wins: 15 / 40 , winning rate = 0.375
+Draw: 5 / 40 draw rate = 0.125
+Black wins: 24 / 50 , winning rate = 0.48
+White wins: 21 / 50 , winning rate = 0.42
+Draw: 5 / 50 draw rate = 0.1
+Time: 5619.609 Average match Time: 112.39218
+
+Black: fast+None+use_policy+no_depth v.s. White: WSS
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 0 / 20 , winning rate = 0.0
+White wins: 20 / 20 , winning rate = 1.0
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 0 / 30 , winning rate = 0.0
+White wins: 30 / 30 , winning rate = 1.0
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 0 / 40 , winning rate = 0.0
+White wins: 40 / 40 , winning rate = 1.0
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 0 / 50 , winning rate = 0.0
+White wins: 50 / 50 , winning rate = 1.0
+Draw: 0 / 50 draw rate = 0.0
+Time: 6554.404 Average match Time: 131.08808
+
+Black: WSS v.s. White: fast+None+use_policy+no_depth
+Black wins: 7 / 10 , winning rate = 0.7
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 15 / 20 , winning rate = 0.75
+White wins: 2 / 20 , winning rate = 0.1
+Draw: 3 / 20 draw rate = 0.15
+Black wins: 22 / 30 , winning rate = 0.733333333333
+White wins: 3 / 30 , winning rate = 0.1
+Draw: 5 / 30 draw rate = 0.166666666667
+Black wins: 29 / 40 , winning rate = 0.725
+White wins: 5 / 40 , winning rate = 0.125
+Draw: 6 / 40 draw rate = 0.15
+Black wins: 34 / 50 , winning rate = 0.68
+White wins: 7 / 50 , winning rate = 0.14
+Draw: 9 / 50 draw rate = 0.18
+Time: 6265.344 Average match Time: 125.30688
+
+Black: fast+None+use_random+no_depth v.s. White: WSS
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 0 / 20 , winning rate = 0.0
+White wins: 20 / 20 , winning rate = 1.0
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 0 / 30 , winning rate = 0.0
+White wins: 30 / 30 , winning rate = 1.0
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 0 / 40 , winning rate = 0.0
+White wins: 40 / 40 , winning rate = 1.0
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 0 / 50 , winning rate = 0.0
+White wins: 50 / 50 , winning rate = 1.0
+Draw: 0 / 50 draw rate = 0.0
+Time: 6540.214 Average match Time: 130.80428
+
+Black: WSS v.s. White: fast+None+use_random+no_depth
+Black wins: 5 / 10 , winning rate = 0.5
+White wins: 3 / 10 , winning rate = 0.3
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 9 / 20 , winning rate = 0.45
+White wins: 8 / 20 , winning rate = 0.4
+Draw: 3 / 20 draw rate = 0.15
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 9 / 30 , winning rate = 0.3
+Draw: 3 / 30 draw rate = 0.1
+Black wins: 24 / 40 , winning rate = 0.6
+White wins: 12 / 40 , winning rate = 0.3
+Draw: 4 / 40 draw rate = 0.1
+Black wins: 30 / 50 , winning rate = 0.6
+White wins: 16 / 50 , winning rate = 0.32
+Draw: 4 / 50 draw rate = 0.08
+Time: 6283.857 Average match Time: 125.67714
+
+Black: fast+policy+use_policy+use_depth v.s. White: mcts_RAN
+Black wins: 5 / 10 , winning rate = 0.5
+White wins: 4 / 10 , winning rate = 0.4
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 9 / 20 , winning rate = 0.45
+White wins: 9 / 20 , winning rate = 0.45
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 14 / 30 , winning rate = 0.466666666667
+White wins: 14 / 30 , winning rate = 0.466666666667
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 17 / 40 , winning rate = 0.425
+White wins: 21 / 40 , winning rate = 0.525
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 19 / 50 , winning rate = 0.38
+White wins: 28 / 50 , winning rate = 0.56
+Draw: 3 / 50 draw rate = 0.06
+Time: 8301.789 Average match Time: 166.03578
+
+Black: mcts_RAN v.s. White: fast+policy+use_policy+use_depth
+Black wins: 7 / 10 , winning rate = 0.7
+White wins: 2 / 10 , winning rate = 0.2
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 14 / 20 , winning rate = 0.7
+White wins: 5 / 20 , winning rate = 0.25
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 20 / 30 , winning rate = 0.666666666667
+White wins: 8 / 30 , winning rate = 0.266666666667
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 29 / 40 , winning rate = 0.725
+White wins: 9 / 40 , winning rate = 0.225
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 35 / 50 , winning rate = 0.7
+White wins: 13 / 50 , winning rate = 0.26
+Draw: 2 / 50 draw rate = 0.04
+Time: 8000.294 Average match Time: 160.00588
+
+Black: fast+policy+use_policy+no_depth v.s. White: mcts_RAN
+Black wins: 4 / 10 , winning rate = 0.4
+White wins: 4 / 10 , winning rate = 0.4
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 7 / 20 , winning rate = 0.35
+White wins: 11 / 20 , winning rate = 0.55
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 13 / 30 , winning rate = 0.433333333333
+White wins: 15 / 30 , winning rate = 0.5
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 15 / 40 , winning rate = 0.375
+White wins: 22 / 40 , winning rate = 0.55
+Draw: 3 / 40 draw rate = 0.075
+Black wins: 21 / 50 , winning rate = 0.42
+White wins: 25 / 50 , winning rate = 0.5
+Draw: 4 / 50 draw rate = 0.08
+Time: 8122.991 Average match Time: 162.45982
+
+Black: mcts_RAN v.s. White: fast+policy+use_policy+no_depth
+Black wins: 3 / 10 , winning rate = 0.3
+White wins: 5 / 10 , winning rate = 0.5
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 13 / 20 , winning rate = 0.65
+White wins: 5 / 20 , winning rate = 0.25
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 6 / 30 , winning rate = 0.2
+Draw: 6 / 30 draw rate = 0.2
+Black wins: 25 / 40 , winning rate = 0.625
+White wins: 9 / 40 , winning rate = 0.225
+Draw: 6 / 40 draw rate = 0.15
+Black wins: 30 / 50 , winning rate = 0.6
+White wins: 11 / 50 , winning rate = 0.22
+Draw: 9 / 50 draw rate = 0.18
+Time: 7874.109 Average match Time: 157.48218
+
+Black: fast+policy+use_random+use_depth v.s. White: mcts_RAN
+Black wins: 2 / 10 , winning rate = 0.2
+White wins: 8 / 10 , winning rate = 0.8
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 8 / 20 , winning rate = 0.4
+White wins: 12 / 20 , winning rate = 0.6
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 9 / 30 , winning rate = 0.3
+White wins: 21 / 30 , winning rate = 0.7
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 12 / 40 , winning rate = 0.3
+White wins: 27 / 40 , winning rate = 0.675
+Draw: 1 / 40 draw rate = 0.025
+Black wins: 13 / 50 , winning rate = 0.26
+White wins: 35 / 50 , winning rate = 0.7
+Draw: 2 / 50 draw rate = 0.04
+Time: 8279.26 Average match Time: 165.5852
+
+Black: mcts_RAN v.s. White: fast+policy+use_random+use_depth
+Black wins: 6 / 10 , winning rate = 0.6
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 3 / 10 draw rate = 0.3
+Black wins: 15 / 20 , winning rate = 0.75
+White wins: 1 / 20 , winning rate = 0.05
+Draw: 4 / 20 draw rate = 0.2
+Black wins: 18 / 30 , winning rate = 0.6
+White wins: 6 / 30 , winning rate = 0.2
+Draw: 6 / 30 draw rate = 0.2
+Black wins: 26 / 40 , winning rate = 0.65
+White wins: 8 / 40 , winning rate = 0.2
+Draw: 6 / 40 draw rate = 0.15
+Black wins: 34 / 50 , winning rate = 0.68
+White wins: 10 / 50 , winning rate = 0.2
+Draw: 6 / 50 draw rate = 0.12
+Time: 7882.889 Average match Time: 157.65778
+
+Black: fast+policy+use_random+no_depth v.s. White: mcts_RAN
+Black wins: 5 / 10 , winning rate = 0.5
+White wins: 2 / 10 , winning rate = 0.2
+Draw: 3 / 10 draw rate = 0.3
+Black wins: 6 / 20 , winning rate = 0.3
+White wins: 9 / 20 , winning rate = 0.45
+Draw: 5 / 20 draw rate = 0.25
+Black wins: 11 / 30 , winning rate = 0.366666666667
+White wins: 13 / 30 , winning rate = 0.433333333333
+Draw: 6 / 30 draw rate = 0.2
+Black wins: 15 / 40 , winning rate = 0.375
+White wins: 18 / 40 , winning rate = 0.45
+Draw: 7 / 40 draw rate = 0.175
+Black wins: 20 / 50 , winning rate = 0.4
+White wins: 22 / 50 , winning rate = 0.44
+Draw: 8 / 50 draw rate = 0.16
+Time: 8217.791 Average match Time: 164.35582
+
+Black: mcts_RAN v.s. White: fast+policy+use_random+no_depth
+Black wins: 6 / 10 , winning rate = 0.6
+White wins: 3 / 10 , winning rate = 0.3
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 13 / 20 , winning rate = 0.65
+White wins: 6 / 20 , winning rate = 0.3
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 19 / 30 , winning rate = 0.633333333333
+White wins: 7 / 30 , winning rate = 0.233333333333
+Draw: 4 / 30 draw rate = 0.133333333333
+Black wins: 28 / 40 , winning rate = 0.7
+White wins: 8 / 40 , winning rate = 0.2
+Draw: 4 / 40 draw rate = 0.1
+Black wins: 34 / 50 , winning rate = 0.68
+White wins: 10 / 50 , winning rate = 0.2
+Draw: 6 / 50 draw rate = 0.12
+Time: 7956.125 Average match Time: 159.1225
+
+Black: fast+None+use_policy+no_depth v.s. White: mcts_RAN
+Black wins: 3 / 10 , winning rate = 0.3
+White wins: 5 / 10 , winning rate = 0.5
+Draw: 2 / 10 draw rate = 0.2
+Black wins: 4 / 20 , winning rate = 0.2
+White wins: 8 / 20 , winning rate = 0.4
+Draw: 8 / 20 draw rate = 0.4
+Black wins: 5 / 30 , winning rate = 0.166666666667
+White wins: 14 / 30 , winning rate = 0.466666666667
+Draw: 11 / 30 draw rate = 0.366666666667
+Black wins: 8 / 40 , winning rate = 0.2
+White wins: 18 / 40 , winning rate = 0.45
+Draw: 14 / 40 draw rate = 0.35
+Black wins: 9 / 50 , winning rate = 0.18
+White wins: 24 / 50 , winning rate = 0.48
+Draw: 17 / 50 draw rate = 0.34
+Time: 9258.702 Average match Time: 185.17404
+
+Black: mcts_RAN v.s. White: fast+None+use_policy+no_depth
+Black wins: 5 / 10 , winning rate = 0.5
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 4 / 10 draw rate = 0.4
+Black wins: 7 / 20 , winning rate = 0.35
+White wins: 4 / 20 , winning rate = 0.2
+Draw: 9 / 20 draw rate = 0.45
+Black wins: 11 / 30 , winning rate = 0.366666666667
+White wins: 8 / 30 , winning rate = 0.266666666667
+Draw: 11 / 30 draw rate = 0.366666666667
+Black wins: 15 / 40 , winning rate = 0.375
+White wins: 12 / 40 , winning rate = 0.3
+Draw: 13 / 40 draw rate = 0.325
+Black wins: 17 / 50 , winning rate = 0.34
+White wins: 13 / 50 , winning rate = 0.26
+Draw: 20 / 50 draw rate = 0.4
+Time: 10353.732 Average match Time: 207.07464
+
+Black: fast+None+use_random+no_depth v.s. White: mcts_RAN
+Black wins: 1 / 10 , winning rate = 0.1
+White wins: 4 / 10 , winning rate = 0.4
+Draw: 5 / 10 draw rate = 0.5
+Black wins: 5 / 20 , winning rate = 0.25
+White wins: 6 / 20 , winning rate = 0.3
+Draw: 9 / 20 draw rate = 0.45
+Black wins: 9 / 30 , winning rate = 0.3
+White wins: 10 / 30 , winning rate = 0.333333333333
+Draw: 11 / 30 draw rate = 0.366666666667
+Black wins: 11 / 40 , winning rate = 0.275
+White wins: 14 / 40 , winning rate = 0.35
+Draw: 15 / 40 draw rate = 0.375
+Black wins: 13 / 50 , winning rate = 0.26
+White wins: 19 / 50 , winning rate = 0.38
+Draw: 18 / 50 draw rate = 0.36
+Time: 9584.371 Average match Time: 191.68742
+
+Black: mcts_RAN v.s. White: fast+None+use_random+no_depth
+Black wins: 4 / 10 , winning rate = 0.4
+White wins: 3 / 10 , winning rate = 0.3
+Draw: 3 / 10 draw rate = 0.3
+Black wins: 11 / 20 , winning rate = 0.55
+White wins: 5 / 20 , winning rate = 0.25
+Draw: 4 / 20 draw rate = 0.2
+Black wins: 15 / 30 , winning rate = 0.5
+White wins: 7 / 30 , winning rate = 0.233333333333
+Draw: 8 / 30 draw rate = 0.266666666667
+Black wins: 20 / 40 , winning rate = 0.5
+White wins: 9 / 40 , winning rate = 0.225
+Draw: 11 / 40 draw rate = 0.275
+Black wins: 27 / 50 , winning rate = 0.54
+White wins: 10 / 50 , winning rate = 0.2
+Draw: 13 / 50 draw rate = 0.26
+Time: 9106.036 Average match Time: 182.12072
+
+Black: fast+policy+use_policy+use_depth v.s. White: real_RAN
+Black wins: 9 / 10 , winning rate = 0.9
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 19 / 20 , winning rate = 0.95
+White wins: 1 / 20 , winning rate = 0.05
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 28 / 30 , winning rate = 0.933333333333
+White wins: 2 / 30 , winning rate = 0.0666666666667
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 36 / 40 , winning rate = 0.9
+White wins: 4 / 40 , winning rate = 0.1
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 44 / 50 , winning rate = 0.88
+White wins: 6 / 50 , winning rate = 0.12
+Draw: 0 / 50 draw rate = 0.0
+Time: 6834.89 Average match Time: 136.6978
+
+Black: real_RAN v.s. White: fast+policy+use_policy+use_depth
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 1 / 20 , winning rate = 0.05
+White wins: 19 / 20 , winning rate = 0.95
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 1 / 30 , winning rate = 0.0333333333333
+White wins: 29 / 30 , winning rate = 0.966666666667
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 3 / 40 , winning rate = 0.075
+White wins: 37 / 40 , winning rate = 0.925
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 3 / 50 , winning rate = 0.06
+White wins: 46 / 50 , winning rate = 0.92
+Draw: 1 / 50 draw rate = 0.02
+Time: 6526.267 Average match Time: 130.52534
+
+Black: fast+policy+use_policy+no_depth v.s. White: real_RAN
+Black wins: 7 / 10 , winning rate = 0.7
+White wins: 3 / 10 , winning rate = 0.3
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 17 / 20 , winning rate = 0.85
+White wins: 3 / 20 , winning rate = 0.15
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 24 / 30 , winning rate = 0.8
+White wins: 6 / 30 , winning rate = 0.2
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 33 / 40 , winning rate = 0.825
+White wins: 7 / 40 , winning rate = 0.175
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 41 / 50 , winning rate = 0.82
+White wins: 9 / 50 , winning rate = 0.18
+Draw: 0 / 50 draw rate = 0.0
+Time: 7023.385 Average match Time: 140.4677
+
+Black: real_RAN v.s. White: fast+policy+use_policy+no_depth
+Black wins: 2 / 10 , winning rate = 0.2
+White wins: 8 / 10 , winning rate = 0.8
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 2 / 20 , winning rate = 0.1
+White wins: 18 / 20 , winning rate = 0.9
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 3 / 30 , winning rate = 0.1
+White wins: 27 / 30 , winning rate = 0.9
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 5 / 40 , winning rate = 0.125
+White wins: 35 / 40 , winning rate = 0.875
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 5 / 50 , winning rate = 0.1
+White wins: 45 / 50 , winning rate = 0.9
+Draw: 0 / 50 draw rate = 0.0
+Time: 6693.296 Average match Time: 133.86592
+
+Black: fast+policy+use_random+use_depth v.s. White: real_RAN
+Black wins: 10 / 10 , winning rate = 1.0
+White wins: 0 / 10 , winning rate = 0.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 19 / 20 , winning rate = 0.95
+White wins: 1 / 20 , winning rate = 0.05
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 26 / 30 , winning rate = 0.866666666667
+White wins: 4 / 30 , winning rate = 0.133333333333
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 33 / 40 , winning rate = 0.825
+White wins: 7 / 40 , winning rate = 0.175
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 40 / 50 , winning rate = 0.8
+White wins: 10 / 50 , winning rate = 0.2
+Draw: 0 / 50 draw rate = 0.0
+Time: 6480.405 Average match Time: 129.6081
+
+Black: real_RAN v.s. White: fast+policy+use_random+use_depth
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 1 / 20 , winning rate = 0.05
+White wins: 18 / 20 , winning rate = 0.9
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 4 / 30 , winning rate = 0.133333333333
+White wins: 25 / 30 , winning rate = 0.833333333333
+Draw: 1 / 30 draw rate = 0.0333333333333
+Black wins: 5 / 40 , winning rate = 0.125
+White wins: 34 / 40 , winning rate = 0.85
+Draw: 1 / 40 draw rate = 0.025
+Black wins: 7 / 50 , winning rate = 0.14
+White wins: 42 / 50 , winning rate = 0.84
+Draw: 1 / 50 draw rate = 0.02
+Time: 6100.589 Average match Time: 122.01178
+
+Black: fast+policy+use_random+no_depth v.s. White: real_RAN
+Black wins: 10 / 10 , winning rate = 1.0
+White wins: 0 / 10 , winning rate = 0.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 19 / 20 , winning rate = 0.95
+White wins: 1 / 20 , winning rate = 0.05
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 26 / 30 , winning rate = 0.866666666667
+White wins: 3 / 30 , winning rate = 0.1
+Draw: 1 / 30 draw rate = 0.0333333333333
+Black wins: 35 / 40 , winning rate = 0.875
+White wins: 3 / 40 , winning rate = 0.075
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 44 / 50 , winning rate = 0.88
+White wins: 4 / 50 , winning rate = 0.08
+Draw: 2 / 50 draw rate = 0.04
+Time: 6581.611 Average match Time: 131.63222
+
+Black: real_RAN v.s. White: fast+policy+use_random+no_depth
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 3 / 20 , winning rate = 0.15
+White wins: 17 / 20 , winning rate = 0.85
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 3 / 30 , winning rate = 0.1
+White wins: 27 / 30 , winning rate = 0.9
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 4 / 40 , winning rate = 0.1
+White wins: 36 / 40 , winning rate = 0.9
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 6 / 50 , winning rate = 0.12
+White wins: 44 / 50 , winning rate = 0.88
+Draw: 0 / 50 draw rate = 0.0
+Time: 6014.381 Average match Time: 120.28762
+
+Black: fast+None+use_policy+no_depth v.s. White: real_RAN
+Black wins: 9 / 10 , winning rate = 0.9
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 18 / 20 , winning rate = 0.9
+White wins: 2 / 20 , winning rate = 0.1
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 28 / 30 , winning rate = 0.933333333333
+White wins: 2 / 30 , winning rate = 0.0666666666667
+Draw: 0 / 30 draw rate = 0.0
+Black wins: 37 / 40 , winning rate = 0.925
+White wins: 3 / 40 , winning rate = 0.075
+Draw: 0 / 40 draw rate = 0.0
+Black wins: 45 / 50 , winning rate = 0.9
+White wins: 5 / 50 , winning rate = 0.1
+Draw: 0 / 50 draw rate = 0.0
+Time: 6834.743 Average match Time: 136.69486
+
+Black: real_RAN v.s. White: fast+None+use_policy+no_depth
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 9 / 10 , winning rate = 0.9
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 3 / 20 , winning rate = 0.15
+White wins: 16 / 20 , winning rate = 0.8
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 4 / 30 , winning rate = 0.133333333333
+White wins: 25 / 30 , winning rate = 0.833333333333
+Draw: 1 / 30 draw rate = 0.0333333333333
+Black wins: 6 / 40 , winning rate = 0.15
+White wins: 33 / 40 , winning rate = 0.825
+Draw: 1 / 40 draw rate = 0.025
+Black wins: 7 / 50 , winning rate = 0.14
+White wins: 42 / 50 , winning rate = 0.84
+Draw: 1 / 50 draw rate = 0.02
+Time: 6758.35 Average match Time: 135.167
+
+Black: fast+None+use_random+no_depth v.s. White: real_RAN
+Black wins: 9 / 10 , winning rate = 0.9
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 14 / 20 , winning rate = 0.7
+White wins: 4 / 20 , winning rate = 0.2
+Draw: 2 / 20 draw rate = 0.1
+Black wins: 23 / 30 , winning rate = 0.766666666667
+White wins: 5 / 30 , winning rate = 0.166666666667
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 30 / 40 , winning rate = 0.75
+White wins: 6 / 40 , winning rate = 0.15
+Draw: 4 / 40 draw rate = 0.1
+Black wins: 37 / 50 , winning rate = 0.74
+White wins: 9 / 50 , winning rate = 0.18
+Draw: 4 / 50 draw rate = 0.08
+Time: 6824.65 Average match Time: 136.493
+
+Black: real_RAN v.s. White: fast+None+use_random+no_depth
+Black wins: 0 / 10 , winning rate = 0.0
+White wins: 10 / 10 , winning rate = 1.0
+Draw: 0 / 10 draw rate = 0.0
+Black wins: 0 / 20 , winning rate = 0.0
+White wins: 20 / 20 , winning rate = 1.0
+Draw: 0 / 20 draw rate = 0.0
+Black wins: 2 / 30 , winning rate = 0.0666666666667
+White wins: 27 / 30 , winning rate = 0.9
+Draw: 1 / 30 draw rate = 0.0333333333333
+Black wins: 2 / 40 , winning rate = 0.05
+White wins: 34 / 40 , winning rate = 0.85
+Draw: 4 / 40 draw rate = 0.1
+Black wins: 2 / 50 , winning rate = 0.04
+White wins: 43 / 50 , winning rate = 0.86
+Draw: 5 / 50 draw rate = 0.1
+Time: 6715.403 Average match Time: 134.30806
+
+===============================================================
+Use the MCTS that with random as prior and policy network as roll out policy
+===============================================================
+Black: fast v.s. White: mcts_RAN
+Black wins: 2 / 10 , winning rate = 0.2
+White wins: 5 / 10 , winning rate = 0.5
+Draw: 3 / 10 draw rate = 0.3
+Black wins: 5 / 20 , winning rate = 0.25
+White wins: 8 / 20 , winning rate = 0.4
+Draw: 7 / 20 draw rate = 0.35
+Black wins: 8 / 30 , winning rate = 0.266666666667
+White wins: 14 / 30 , winning rate = 0.466666666667
+Draw: 8 / 30 draw rate = 0.266666666667
+Black wins: 11 / 40 , winning rate = 0.275
+White wins: 19 / 40 , winning rate = 0.475
+Draw: 10 / 40 draw rate = 0.25
+Black wins: 11 / 50 , winning rate = 0.22
+White wins: 22 / 50 , winning rate = 0.44
+Draw: 17 / 50 draw rate = 0.34
+Time: 9468.161 Average match Time: 189.36322
+
+Black: mcts_RAN v.s. White: fast
+Black wins: 6 / 10 , winning rate = 0.6
+White wins: 1 / 10 , winning rate = 0.1
+Draw: 3 / 10 draw rate = 0.3
+Black wins: 13 / 20 , winning rate = 0.65
+White wins: 1 / 20 , winning rate = 0.05
+Draw: 6 / 20 draw rate = 0.3
+Black wins: 21 / 30 , winning rate = 0.7
+White wins: 1 / 30 , winning rate = 0.0333333333333
+Draw: 8 / 30 draw rate = 0.266666666667
+Black wins: 24 / 40 , winning rate = 0.6
+White wins: 4 / 40 , winning rate = 0.1
+Draw: 12 / 40 draw rate = 0.3
+Black wins: 28 / 50 , winning rate = 0.56
+White wins: 8 / 50 , winning rate = 0.16
+Draw: 14 / 50 draw rate = 0.28
+Time: 11647.908 Average match Time: 232.95816
+
+Black: fast v.s. White: real_RAN
+Black wins: 7 / 10 , winning rate = 0.7
+White wins: 2 / 10 , winning rate = 0.2
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 13 / 20 , winning rate = 0.65
+White wins: 3 / 20 , winning rate = 0.15
+Draw: 4 / 20 draw rate = 0.2
+Black wins: 22 / 30 , winning rate = 0.733333333333
+White wins: 3 / 30 , winning rate = 0.1
+Draw: 5 / 30 draw rate = 0.166666666667
+Black wins: 31 / 40 , winning rate = 0.775
+White wins: 4 / 40 , winning rate = 0.1
+Draw: 5 / 40 draw rate = 0.125
+Black wins: 40 / 50 , winning rate = 0.8
+White wins: 5 / 50 , winning rate = 0.1
+Draw: 5 / 50 draw rate = 0.1
+Time: 7318.987 Average match Time: 146.37974
+
+Black: real_RAN v.s. White: fast
+Black wins: 1 / 10 , winning rate = 0.1
+White wins: 8 / 10 , winning rate = 0.8
+Draw: 1 / 10 draw rate = 0.1
+Black wins: 3 / 20 , winning rate = 0.15
+White wins: 16 / 20 , winning rate = 0.8
+Draw: 1 / 20 draw rate = 0.05
+Black wins: 3 / 30 , winning rate = 0.1
+White wins: 25 / 30 , winning rate = 0.833333333333
+Draw: 2 / 30 draw rate = 0.0666666666667
+Black wins: 4 / 40 , winning rate = 0.1
+White wins: 34 / 40 , winning rate = 0.85
+Draw: 2 / 40 draw rate = 0.05
+Black wins: 6 / 50 , winning rate = 0.12
+White wins: 41 / 50 , winning rate = 0.82
+Draw: 3 / 50 draw rate = 0.06
+Time: 7316.045 Average match Time: 146.3209

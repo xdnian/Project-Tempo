@@ -1,0 +1,60 @@
+epoch = 200, batch_size = 2000
+
+Best: 0.357088332574 using {'dense_act': 'tanh', 'dropout_rate': 0.0}
+0.357088332574 ( 0.000541991282904 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.0}
+0.337453332742 ( 0.00108282302764 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.1}
+0.324458333651 ( 0.0011594269723 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.2}
+0.311360000173 ( 0.000549969828053 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.3}
+0.299568333129 ( 0.00155354693154 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.4}
+0.291428333422 ( 0.000488028956652 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.5}
+0.280626667142 ( 0.000124988270063 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.6}
+0.268623332481 ( 0.000925025268313 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.7}
+0.254228333831 ( 0.000894439552293 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.8}
+0.225911666751 ( 0.00142968735368 ) with: {'dense_act': 'tanh', 'dropout_rate': 0.9}
+0.351648333271 ( 0.00333402658734 ) with: {'dense_act': 'relu', 'dropout_rate': 0.0}
+0.345843333205 ( 0.00251814141089 ) with: {'dense_act': 'relu', 'dropout_rate': 0.1}
+0.327606667678 ( 0.0022357928813 ) with: {'dense_act': 'relu', 'dropout_rate': 0.2}
+0.314105000297 ( 0.000722507032962 ) with: {'dense_act': 'relu', 'dropout_rate': 0.3}
+0.301964998841 ( 0.00102201534646 ) with: {'dense_act': 'relu', 'dropout_rate': 0.4}
+0.289609999657 ( 0.00187405098783 ) with: {'dense_act': 'relu', 'dropout_rate': 0.5}
+0.276099999001 ( 0.00102418249189 ) with: {'dense_act': 'relu', 'dropout_rate': 0.6}
+0.266448333214 ( 0.00171114164294 ) with: {'dense_act': 'relu', 'dropout_rate': 0.7}
+0.247256667018 ( 0.00242661056481 ) with: {'dense_act': 'relu', 'dropout_rate': 0.8}
+0.194841667314 ( 0.000953907153838 ) with: {'dense_act': 'relu', 'dropout_rate': 0.9}
+0.329421666463 ( 0.00217356289542 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.0}
+0.306039999922 ( 0.00103625134553 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.1}
+0.292668332954 ( 0.00131741163434 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.2}
+0.284936666886 ( 0.000738155005552 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.3}
+0.276796666135 ( 0.00181317593249 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.4}
+0.269371667107 ( 0.00257085123239 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.5}
+0.259200000515 ( 0.00123150970192 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.6}
+0.247851666262 ( 0.000328996934454 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.7}
+0.230746666243 ( 0.00116554924527 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.8}
+0.194841667314 ( 0.000953907153838 ) with: {'dense_act': 'sigmoid', 'dropout_rate': 0.9}
+
+epoch = 800, batch_size = 2000
+
+Best: 0.36488500009 using {'dropout_rate': 0.3}
+0.357394999762 ( 0.000812434753679 ) with: {'dropout_rate': 0.2}
+0.36127000014 ( 0.000317725986795 ) with: {'dropout_rate': 0.25}
+0.36488500009 ( 0.000579180388695 ) with: {'dropout_rate': 0.3}
+0.363770000438 ( 0.000716554017248 ) with: {'dropout_rate': 0.35}
+0.362913333376 ( 0.000383521723232 ) with: {'dropout_rate': 0.4}
+
+epoch = 100, batch_size = 2000
+
+Best: 0.340571212227 using {'conv_act': 'sigmoid'}
+0.315631817778 ( 0.00340560130431 ) with: {'conv_act': 'tanh'}
+0.321454546668 ( 0.00122604926021 ) with: {'conv_act': 'relu'}
+0.340571212227 ( 0.00356679693448 ) with: {'conv_act': 'sigmoid'}
+0.322104545073 ( 0.00164862051289 ) with: {'conv_act': 'softplus'}
+0.320331818949 ( 0.00230081110057 ) with: {'conv_act': 'elu'}
+
+epoch = 300, batch_size = 2000
+
+Best: 0.370340909109 using {'conv_act': 'softplus'}
+0.360103029825 ( 0.00145613684977 ) with: {'conv_act': 'tanh'}
+0.36760454503 ( 0.000808606003226 ) with: {'conv_act': 'relu'}
+0.3608348487 ( 0.00111367858107 ) with: {'conv_act': 'sigmoid'}
+0.370340909109 ( 0.00169152429998 ) with: {'conv_act': 'softplus'}
+0.365854545705 ( 0.000376056829573 ) with: {'conv_act': 'elu'}

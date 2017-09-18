@@ -1,0 +1,67 @@
+model structure:
+
+data = np.empty((1,11,8,8), dtype="int8")
+    gameboard = engine.get_board()
+    validboards = engine.get_validboard(return_all=True)
+    arr = np.empty((11,8,8), dtype="int8")
+    for i in range(8):
+        for j in range(8):
+            arr[0][i][j] = 0
+            if i==0 or i==7 or j==0 or j==7:
+                arr[9][i][j] = 1
+            else:
+                arr[9][i][j] = 0
+            arr[10][i][j] = 1
+            if gameboard[i][j] == player:
+                arr[1][i][j] = 1
+                arr[2][i][j] = 0
+                arr[3][i][j] = 0
+            elif gameboard[i][j] == 1-player:
+                arr[1][i][j] = 0
+                arr[2][i][j] = 1
+                arr[3][i][j] = 0
+            else:
+                arr[1][i][j] = 0
+                arr[2][i][j] = 0
+                arr[3][i][j] = 1
+            if validboards[player][i][j] == player:
+                arr[4][i][j] = 1
+            else:
+                arr[4][i][j] = 0
+            if gameboard[i][j] == -1:
+                arr[5][i][j] = 0
+                arr[6][i][j] = 0
+                arr[7][i][j] = 0
+                arr[8][i][j] = 0
+            elif self.check_adjacent(i, j, gameboard):
+                if gameboard[i][j] == player:
+                    arr[5][i][j] = 1
+                    arr[6][i][j] = 0
+                    arr[7][i][j] = 0
+                    arr[8][i][j] = 0
+                elif gameboard[i][j] == 1-player:
+                    arr[5][i][j] = 0
+                    arr[6][i][j] = 0
+                    arr[7][i][j] = 1
+                    arr[8][i][j] = 0
+            else:
+                if gameboard[i][j] == player:
+                    arr[5][i][j] = 0
+                    arr[6][i][j] = 1
+                    arr[7][i][j] = 0
+                    arr[8][i][j] = 0
+                elif gameboard[i][j] == 1-player:
+                    arr[5][i][j] = 0
+                    arr[6][i][j] = 0
+                    arr[7][i][j] = 0
+                    arr[8][i][j] = 1
+    data[0,:,:,:] = arr
+    cat = self.model.predict(data, batch_size=1)
+    value = np.argmax(cat[0])
+    if value > 8:
+        value = value - 17
+    #DEBUG
+    # print value
+    # raw_input()
+    #DEBUG
+    return -value

@@ -5,7 +5,7 @@ function restart() {
 	currentplayer = pieces[0];
 	for (var i = 0; i < 8; i++) {
 		for (var j = 0; j < 8; j++) {
-			gameboard[i][j] = "_";
+			gameboard[i][j] = ".";
 		}
 	}
 
@@ -58,6 +58,10 @@ function display() {
 	var left = $("#chessboard").position().left; // left posotion of the whole chess board
 	var edge = 40;
 	var chess_size = 65;
+	if ($( window ).width() < 768){
+		edge = 40/600 * $( window ).width();
+		chess_size = 65/600 * $( window ).width();
+	}
 
 	var board = $("#board");
 	board.css("top", top + "px");
@@ -108,18 +112,51 @@ function handleEvent() {
 	for (var k = 0; k < 2; k++) {
 		$(".chess.hover").children('img').hide();
 		if (currentplayer == pieces[k]) {
-			$(".chess.hover").mouseenter(function() {
-				$(this).children('img').show();
-			});
-			$(".chess.hover").mouseleave(function() {
-				$(this).children('img').hide();
-			});
-			$(".chess.hover").click(function() {
-				var name = $(this).get(0).id;
-				update(Number(name[5]), Number(name[6]));
-			});
+			if ((currentplayer == pieces[0]) == user_is_black){
+				$(".chess.hover").mouseenter(function() {
+					$(this).children('img').show();
+				});
+				$(".chess.hover").mouseleave(function() {
+					$(this).children('img').hide();
+				});
+				$(".chess.hover").click(function() {
+					var name = $(this).get(0).id;
+					update(Number(name[5]), Number(name[6]));
+				});
+			}
+			else {
+				if (!(stones[0] == 0 || stones[1] == 0 || stones[0] + stones[1] == 64 || (validmoves[0] == 0 && validmoves[1] == 0)))
+				{
+					$.post('http://172.31.115.212:8888/', {"board": get_board(), "wait_time": 3}, 
+					function(data, status){
+						if (status == 'success'){
+							console.log(data);
+							move = get_move(data["move"]);
+							update(move[0], move[1]);
+						}
+					});
+				}
+			}
 		}
 	}
+}
+
+function get_board() {
+	var board="$$$$$$$$$$"
+	for (var i = 0; i < 8; i++) {
+		board += "$";
+		for (var j = 0; j < 8; j++) {
+			board += gameboard[7-i][j];
+		}
+		board += "$";
+	}
+	board += "$$$$$$$$$$ ";
+	board += currentplayer;
+	return board;
+}
+
+function get_move(move) {
+	return [7 - Math.floor((move-11)/10), (move-11)%10];
 }
 
 /*
@@ -143,7 +180,7 @@ function change_inside(target_x, target_y, end_x, end_y, current_piece, change) 
 			j = j + (end_y - j) / Math.abs(end_y - j);
 		}
 
-		if (gameboard[i][j] == "_") {
+		if (gameboard[i][j] == ".") {
 			return false;
 		} else if (gameboard[i][j] == current_piece) {
 			found = true;
@@ -213,8 +250,8 @@ function validateAndCount() {
 	for (var i = 0; i < 8; i++) {
 		for (var j = 0; j < 8; j++) {
 			for (var k = 0; k < 2; k++) {
-				validboard[k][i][j] = "_";
-				if (gameboard[i][j] == "_") {
+				validboard[k][i][j] = ".";
+				if (gameboard[i][j] == ".") {
 					if (expand(i, j, pieces[k], false)) {
 						validboard[k][i][j] = pieces[k];
 						validmoves[k]++;
@@ -274,6 +311,8 @@ function checkWin() {
 
 $(document).ready(function() {
 
+	user_is_black = true;
+
 	gameboard = new Array(); // gameboard
 
 	pieces = new Array("x", "o"); //pieces color: black="x" white="o" 黑子是叉，白子是圈
@@ -293,9 +332,9 @@ $(document).ready(function() {
 		validboard[1][i] = new Array();
 
 		for (var j = 0; j < 8; j++) {
-			gameboard[i][j] = "_";
-			validboard[0][i][j] = "_";
-			validboard[1][i][j] = "_";
+			gameboard[i][j] = ".";
+			validboard[0][i][j] = ".";
+			validboard[1][i][j] = ".";
 		}
 	}
 
