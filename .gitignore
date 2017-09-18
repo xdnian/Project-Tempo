@@ -1,6 +1,7 @@
 .vscode
 .DS_Store
-*.conf
+desktop.ini
 ftp-sync.json
 setting.json
+*.conf
 *.npy
